@@ -75,6 +75,21 @@ public abstract class Character : MonoBehaviour
         if(Input.GetMouseButtonDown(0)){
              Shoot();
         }
+
+        if (Input.GetKey(KeyCode.Q))
+        {
+            MainSkill.Use();
+        }
+        
+        if (Input.GetKey(KeyCode.E))
+        {
+            SecondarySkill.Use();
+        }
+        
+        if (Input.GetKey(KeyCode.F))
+        {
+            ThirdSkill.Use();
+        }
         
     }
     
