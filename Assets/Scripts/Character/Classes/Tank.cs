@@ -9,6 +9,7 @@ public class Tank : Character
 {
     [SerializeField] private float moveSpeed;
     public GameObject shield;
+    public GameObject assist;
     public bool mainSkillLock = false;
 
     protected override void Start()
@@ -35,6 +36,10 @@ public class Tank : Character
             GameObject sShield = Instantiate(shield, pos, transform.rotation) as GameObject;
             mainSkillLock = true;
         }
-        
+    }
+
+    protected override void OnSecondarySkillUse()
+    {
+        GameObject sAssist = Instantiate(assist, transform.position, transform.rotation);
     }
 }
