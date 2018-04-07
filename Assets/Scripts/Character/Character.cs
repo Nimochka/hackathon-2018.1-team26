@@ -19,6 +19,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField] GameObject muzzle;
     [SerializeField] private float fireRate;
     [SerializeField] private GameObject bullet;
+    public bool OnlinePlayer;
     
     float nextFire = 0f;
 
@@ -71,26 +72,28 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Update()
     {
-        
-        if(Input.GetMouseButtonDown(0)){
-             Shoot(bullet);
-        }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (!OnlinePlayer)
         {
-            OnMainSkillUse();
-        }
+            if(Input.GetMouseButtonDown(0)){
+                Shoot(bullet);
+            }
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+                OnMainSkillUse();
+            }
         
-        if (Input.GetKey(KeyCode.Q))
-        {
-            OnSecondarySkillUse();
-        }
+            if (Input.GetKey(KeyCode.Q))
+            {
+                OnSecondarySkillUse();
+            }
         
-        if (Input.GetKey(KeyCode.E))
-        {
-            OnThirdSkillUse();
+            if (Input.GetKey(KeyCode.E))
+            {
+                OnThirdSkillUse();
+            }
         }
-        
     }
     
     protected virtual void Shoot (GameObject bulletObject)
@@ -115,15 +118,18 @@ public abstract class Character : MonoBehaviour
             
             GameObject.Destroy(sBullet, 1f);
 
-            SocketController.RequestPlayerShot(new ShotData(SocketController.SocketId, muzzle.transform.position,
-                muzzle.transform.rotation.eulerAngles));
+//            SocketController.RequestPlayerShot(new ShotData(SocketController.SocketId, muzzle.transform.position,
+//                muzzle.transform.rotation.eulerAngles));
         }
         
     }
 
     protected virtual void FixedUpdate()
     {
-        Move(); 
+        if (!OnlinePlayer)
+        {
+            Move(); 
+        }
     }
 
     protected virtual void OnMainSkillUse()

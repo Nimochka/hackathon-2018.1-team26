@@ -16,10 +16,6 @@ public class Hunter : Character
 
     protected override void OnMainSkillUse()
     {
-        if (BatteryCharge > 0)
-        {
-            BatteryCharge--;
-            Shoot(poisonArrow);
-        }
+        Shoot(poisonArrow);
     }
 }
