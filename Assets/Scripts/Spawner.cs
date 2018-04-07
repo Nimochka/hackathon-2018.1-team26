@@ -8,9 +8,10 @@ public class Spawner : MonoBehaviour
     public GameObject OnlineHunter, OnlineTank, OnlineSupport, OnlineBoss;
 
     public Slider HealthBar;
-
     public Image DamageScreen;
 
+    public Slider EnergyBar;
+    public Image EnergyScreen;
 
     void Start()
     {
@@ -29,9 +30,15 @@ public class Spawner : MonoBehaviour
             prefab = PlayerHunter;
         PlayerCharacter playerCharacter = Instantiate(prefab).GetComponent<PlayerCharacter>();
         Camera.main.GetComponent<CameraFollow>().FollowTarget = playerCharacter.transform;
+        
         PlayerHealth playerHealth = playerCharacter.GetComponent<PlayerHealth>();
         playerHealth.damageScreen = DamageScreen;
         playerHealth.healthBar = HealthBar;
+
+        PlayerBattery playerBattery = playerCharacter.GetComponent<PlayerBattery>();
+        playerBattery.chargeScreen = EnergyScreen;
+        playerBattery.energyBar = EnergyBar;
+        
         SynchronizationController.PlayerCharacter = playerCharacter;
         return playerCharacter;
     }

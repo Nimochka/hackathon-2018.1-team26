@@ -10,7 +10,7 @@ public class PlayerBattery : MonoBehaviour {
 	SynchronizationController SyncController;
 	
 	public float fullEnergy;
-	float currentEnergy;
+	public float currentEnergy;
 	
 	//HUD
 	public Slider energyBar;
@@ -60,7 +60,7 @@ public class PlayerBattery : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		onlinePlayersList = SyncController.onlineCharacters.Where(x => x.Value.Character != "Boss")
+		onlinePlayersList = SyncController.OnlineCharacters.Where(x => x.Value.Character != "Boss")
 			.Select(x => x.Value)
 			.ToList();
 
@@ -75,9 +75,9 @@ public class PlayerBattery : MonoBehaviour {
 				float DistanceAura = Vector2.Distance(transform.position,
 					new Vector2(onPlayer.transform.position.x, onPlayer.transform.position.y));
 
-				Debug.Log(onPlayer.transform.position);
+				Debug.Log(DistanceAura);
 				
-				if (DistanceAura > 24)
+				if (DistanceAura > 44)
 				{
 					PlayersTogether = false;
 					break;
@@ -86,11 +86,9 @@ public class PlayerBattery : MonoBehaviour {
 			}
 		}
 
-		if (PlayersTogether && !startCharged)
+		if (PlayersTogether && !startCharged && (currentEnergy < fullEnergy))
 		{
 			StartCoroutine(ChargePlayer());
-			
-			
 		}
 		
 		if (charged) {
@@ -108,6 +106,7 @@ public class PlayerBattery : MonoBehaviour {
 	
 			startCharged = true;
 			yield return new WaitForSeconds(2);
+			addCharge(1);
 			charged = true;
 
 			startCharged = false;
