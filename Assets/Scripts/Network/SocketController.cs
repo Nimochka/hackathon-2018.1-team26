@@ -10,6 +10,8 @@ public partial class SocketController : MonoBehaviour
 
     public static string SocketId, Character;
 
+    public static Pick CurrentPick;
+
 
     void Start()
     {
@@ -25,7 +27,7 @@ public partial class SocketController : MonoBehaviour
         socket.On("connect:success", ResponsePlayerConnectSuccess);
         socket.On("connect:failure", ResponsePlayerConnectFail);
 
-        socket.Connect();
+        //socket.Connect();
     }
 
 

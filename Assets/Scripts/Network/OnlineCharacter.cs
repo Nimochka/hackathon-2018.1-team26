@@ -2,6 +2,8 @@
 
 public class OnlineCharacter : MonoBehaviour
 {
+    public string Character;
+
     private TickData prevTickData, newTickData;
     private float lerpTimer;
 

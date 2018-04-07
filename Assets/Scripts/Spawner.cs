@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject PlayerHunter, PlayerTank, PlayerSupport, PlayerBoss, OnlineCharacterPrefab;
+    public GameObject PlayerHunter, PlayerTank, PlayerSupport, PlayerBoss;
+    public GameObject OnlineHunter, OnlineTank, OnlineSupport, OnlineBoss;
+
+    public Slider HealthBar;
+    public Image DamageScreen;
 
 
     void Start()
@@ -23,13 +28,23 @@ public class Spawner : MonoBehaviour
             prefab = PlayerHunter;
         PlayerCharacter playerCharacter = Instantiate(prefab).GetComponent<PlayerCharacter>();
         Camera.main.GetComponent<CameraFollow>().FollowTarget = playerCharacter.transform;
+        PlayerHealth playerHealth = playerCharacter.GetComponent<PlayerHealth>();
+        playerHealth.damageScreen = DamageScreen;
+        playerHealth.healthBar = HealthBar;
         return playerCharacter;
     }
 
 
-    public OnlineCharacter SpawnOnlineCharacter()
+    public OnlineCharacter SpawnOnlineCharacter(string character)
     {
-        OnlineCharacter onlineCharacter = Instantiate(OnlineCharacterPrefab).GetComponent<OnlineCharacter>();
+        GameObject prefab = OnlineBoss;
+        if (character == "Tank")
+            prefab = OnlineTank;
+        else if (character == "Support")
+            prefab = OnlineSupport;
+        else if (character == "Hunter")
+            prefab = OnlineHunter;
+        OnlineCharacter onlineCharacter = Instantiate(prefab).GetComponent<OnlineCharacter>();
         return onlineCharacter;
     }
 

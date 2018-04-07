@@ -4,24 +4,35 @@ using UnityEngine;
 
 public class SynchronizationController : MonoBehaviour
 {
-
-    private readonly Dictionary<string, OnlineCharacter> onlineCharacters = new Dictionary<string, OnlineCharacter>();
+    public readonly Dictionary<string, OnlineCharacter> onlineCharacters = new Dictionary<string, OnlineCharacter>();
 
     public Spawner Spawner;
 
 
     void Start()
     {
+        SpawnCharacters();
         SocketController.OnPlayerTick += ReceivePlayerTick;
         SocketController.OnPlayerHealthChanged += ReceivePlayerHealthChange;
         SocketController.OnPlayerShot += ReceivePlayerShot;
     }
 
 
+    private void SpawnCharacters()
+    {
+        if (SocketController.CurrentPick.Boss != SocketController.SocketId)
+            onlineCharacters.Add(SocketController.CurrentPick.Boss, Spawner.SpawnOnlineCharacter("Boss"));
+        if (SocketController.CurrentPick.Hunter != SocketController.SocketId)
+            onlineCharacters.Add(SocketController.CurrentPick.Hunter, Spawner.SpawnOnlineCharacter("Hunter"));
+        if (SocketController.CurrentPick.Support != SocketController.SocketId)
+            onlineCharacters.Add(SocketController.CurrentPick.Support, Spawner.SpawnOnlineCharacter("Support"));
+        if (SocketController.CurrentPick.Tank != SocketController.SocketId)
+            onlineCharacters.Add(SocketController.CurrentPick.Tank, Spawner.SpawnOnlineCharacter("Tank"));
+    }
+
+
     private void ReceivePlayerTick(TickData tickData)
     {
-        if (!onlineCharacters.ContainsKey(tickData.SocketId))
-            onlineCharacters.Add(tickData.SocketId, Spawner.SpawnOnlineCharacter());
         onlineCharacters[tickData.SocketId].ReceiveTick(tickData);
     }
 
@@ -34,8 +45,6 @@ public class SynchronizationController : MonoBehaviour
 
     private void ReceivePlayerShot(ShotData shotData)
     {
-        if (!onlineCharacters.ContainsKey(shotData.SocketId))
-            onlineCharacters.Add(shotData.SocketId, Spawner.SpawnOnlineCharacter());
         onlineCharacters[shotData.SocketId].FireBullet(shotData);
     }
 
