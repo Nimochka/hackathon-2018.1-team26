@@ -8,6 +8,7 @@ public class Spawner : MonoBehaviour
     public GameObject OnlineHunter, OnlineTank, OnlineSupport, OnlineBoss;
 
     public Slider HealthBar;
+
     public Image DamageScreen;
 
 
