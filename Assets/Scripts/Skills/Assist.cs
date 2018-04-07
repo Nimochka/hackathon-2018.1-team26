@@ -8,7 +8,7 @@ namespace Skills
         public bool bossDetected = false;
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.name == "Boss")
+            if (other.gameObject.tag == "Boss")
             {
                 bossDetected = true;
             }
@@ -26,11 +26,11 @@ namespace Skills
                 }
                 else
                 {
-                    GameObject tank = GameObject.Find("Tank");
-                    GameObject boss = GameObject.Find("Boss");
+                    GameObject tank = GameObject.FindGameObjectWithTag("Tank");
+                    GameObject boss = GameObject.FindGameObjectWithTag("Boss");
                     Vector3 direct = tank.transform.position - boss.transform.position;
 //                    direct.Normalize();
-                    GameObject.Find("Boss").gameObject.transform.up = direct;
+                    GameObject.FindGameObjectWithTag("Boss").gameObject.transform.up = direct;
                     lifeTime -= Time.deltaTime;
                 }
             }

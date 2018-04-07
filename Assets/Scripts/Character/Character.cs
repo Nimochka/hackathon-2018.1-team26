@@ -169,9 +169,9 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void OnThirdSkillUse()
     {
-        GameObject tank = GameObject.Find("Tank");
-        GameObject hunter = GameObject.Find("Hunter");
-        GameObject support = GameObject.Find("Support");
+        GameObject tank = GameObject.FindGameObjectWithTag("Tank");
+        GameObject hunter = GameObject.FindGameObjectWithTag("Hunter");
+        GameObject support = GameObject.FindGameObjectWithTag("Support");
         if (tank != null)
         {
             Teleport(tank);

@@ -7,7 +7,7 @@ namespace Skills
         private void OnCollisionEnter2D(Collision2D other)
         {
             GameObject otherGo = other.gameObject;
-            if (otherGo.name == "Boss")
+            if (otherGo.tag == "Boss")
             {
                 Debug.Log(otherGo.GetComponent<Boss>().HealthPoints);
             }

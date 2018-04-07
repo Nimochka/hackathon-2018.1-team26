@@ -8,10 +8,11 @@ namespace Skills
         private void OnCollisionEnter2D(Collision2D other)
         {
             GameObject otherGo = other.gameObject;
-            if (otherGo.name == "Boss")
+            if (otherGo.tag == "Boss")
             {
-                otherGo.GetComponent<Boss>().stunTime = 5.0f;
+//                otherGo.GetComponent<Boss>().stunTime = 5.0f;
                 GameObject.Destroy(gameObject);
+                //TODO отправка сокета
             }
         }
 
