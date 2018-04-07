@@ -13,6 +13,7 @@ public partial class SocketController
     public static event Action<ShotData> OnPlayerShot;
     public static event Action<Pick> OnGetPick;
     public static event Action OnGameStarted;
+    public static event Action<DieData> OnPlayerDied;
 
     public static event Action OnPlayerConnectSuccess, OnPlayerConnectFail;
 
@@ -74,5 +75,12 @@ public partial class SocketController
     {
         if (OnGameStarted != null)
             OnGameStarted();
+    }
+
+
+    private void ResponsePlayerDied(SocketIOEvent socketEvent)
+    {
+        if (OnPlayerDied != null)
+            OnPlayerDied(JsonUtility.FromJson<DieData>(socketEvent.data.ToString()));
     }
 }

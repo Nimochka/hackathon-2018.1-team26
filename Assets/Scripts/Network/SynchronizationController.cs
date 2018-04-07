@@ -16,6 +16,7 @@ public class SynchronizationController : MonoBehaviour
         SocketController.OnPlayerTick += ReceivePlayerTick;
         SocketController.OnPlayerHealthChanged += ReceivePlayerHealthChange;
         SocketController.OnPlayerShot += ReceivePlayerShot;
+        SocketController.OnPlayerDied += ReceivePlayerDied;
     }
 
 
@@ -52,6 +53,12 @@ public class SynchronizationController : MonoBehaviour
     private void ReceivePlayerShot(ShotData shotData)
     {
         OnlineCharacters[shotData.SocketId].FireBullet(shotData);
+    }
+
+
+    private void ReceivePlayerDied(DieData dieData)
+    {
+        OnlineCharacters[dieData.SocketId].Die();
     }
 
 }

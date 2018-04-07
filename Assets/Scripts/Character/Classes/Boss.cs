@@ -22,7 +22,7 @@ public class Boss : Character
 
     protected override void Update()
     {
-        Shoot(bullet);
+        //Shoot(bullet);
         if (stunTime <= 0)
         {
             base.Update();
@@ -33,17 +33,17 @@ public class Boss : Character
         }
     }
 
-    protected override void FixedUpdate()
-    {
-        if (stunTime <= 0)
-        {
-            base.FixedUpdate();
-        }
-        else
-        {
-            stunTime -= Time.deltaTime;
-        }
-    }
+    //protected override void FixedUpdate()
+    //{
+    //    if (stunTime <= 0)
+    //    {
+    //        base.FixedUpdate();
+    //    }
+    //    else
+    //    {
+    //        stunTime -= Time.deltaTime;
+    //    }
+    //}
 
 
     

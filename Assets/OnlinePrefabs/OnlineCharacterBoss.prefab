@@ -185,6 +185,7 @@ MonoBehaviour:
   Bullet: {fileID: 1955535305912116, guid: 4643fec7beb3c3e4eb192a6e5381c87d, type: 2}
   Muzzle: {fileID: 1797261753703446}
   MuzzleFlashPrefab: {fileID: 148364, guid: fe0b9bb43d8c694438303177acdfb462, type: 2}
+  SpriteRenderer: {fileID: 212609918385563936}
 --- !u!212 &212561385945312170
 SpriteRenderer:
   m_ObjectHideFlags: 1

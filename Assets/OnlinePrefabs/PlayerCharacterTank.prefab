@@ -125,6 +125,7 @@ MonoBehaviour:
     type: 2}
   damageScreen: {fileID: 114225232821463264, guid: 7f9f6d1cc2ecd1441ba531202238331d,
     type: 2}
+  SpriteRenderer: {fileID: 212898597399185090}
 --- !u!114 &114658574722212554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -154,6 +155,7 @@ MonoBehaviour:
   muzzle: {fileID: 1651708972947404}
   bullet: {fileID: 1955535305912116, guid: 4643fec7beb3c3e4eb192a6e5381c87d, type: 2}
   OnlinePlayer: 0
+  IsDead: 0
   moveSpeed: 150
   shield: {fileID: 1208480177690618, guid: 185479ca8f131da4b97c3cd450c8d529, type: 2}
   assist: {fileID: 1863895680301644, guid: 65159ca3e5e728146ac92fea9c56fd96, type: 2}
