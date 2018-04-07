@@ -27,6 +27,7 @@ io.on('connection', socket => {
     socket.on('request:player:tick', data => socket.broadcast.emit('response:player:tick', data));
     socket.on('request:player:changehealth', data => socket.broadcast.emit('response:player:changehealth', data));
     socket.on('request:player:shot', data => socket.broadcast.emit('response:player:shot', data));
+    socket.on('request:player:die', data => socket.broadcast.emit('response:player:die', data));
 
     socket.on('request:character:select', data => pickCharacter(data));
 
