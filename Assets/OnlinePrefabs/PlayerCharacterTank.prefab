@@ -155,6 +155,9 @@ MonoBehaviour:
   bullet: {fileID: 1955535305912116, guid: 4643fec7beb3c3e4eb192a6e5381c87d, type: 2}
   OnlinePlayer: 0
   moveSpeed: 150
+  shield: {fileID: 1208480177690618, guid: 185479ca8f131da4b97c3cd450c8d529, type: 2}
+  assist: {fileID: 1863895680301644, guid: 65159ca3e5e728146ac92fea9c56fd96, type: 2}
+  mainSkillLock: 0
 --- !u!212 &212898597399185090
 SpriteRenderer:
   m_ObjectHideFlags: 1
