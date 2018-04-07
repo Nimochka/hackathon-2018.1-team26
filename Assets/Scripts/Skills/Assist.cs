@@ -6,6 +6,7 @@ namespace Skills
     {
         public float lifeTime = 5.0f;
         public bool bossDetected = false;
+        
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.tag == "Boss")

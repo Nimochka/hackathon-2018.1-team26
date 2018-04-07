@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using UnityEngine;
@@ -12,10 +13,18 @@ public class Tank : Character
     public GameObject assist;
     public bool mainSkillLock = false;
 
+    private PlayerBattery plBattery;
+
+    private bool assistInProgress;
+
     protected override void Start()
     {
         base.Start();
         MoveSpeed = moveSpeed;
+
+        plBattery = GetComponent<PlayerBattery>();
+
+        assistInProgress = false;
     }
 
     protected override void Shoot(GameObject bulletObject)
@@ -35,11 +44,26 @@ public class Tank : Character
             pos.y += transform.up.y * 20;
             GameObject sShield = Instantiate(shield, pos, transform.rotation) as GameObject;
             mainSkillLock = true;
+            plBattery.discharge();
         }
     }
 
     protected override void OnSecondarySkillUse()
     {
-        GameObject sAssist = Instantiate(assist, transform.position, transform.rotation);
+        if (!assistInProgress)
+        {
+            GameObject sAssist = Instantiate(assist, transform.position, transform.rotation);
+            plBattery.discharge();
+            StartCoroutine(startAssist());
+        }
+    }
+
+    IEnumerator startAssist()
+    {
+        
+        assistInProgress = true;
+        yield return new WaitForSeconds(10);
+        assistInProgress = false;
+        
     }
 }

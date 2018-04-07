@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Linq;
 
 public abstract class Character : MonoBehaviour
 {
@@ -26,12 +29,24 @@ public abstract class Character : MonoBehaviour
     private Rigidbody2D rg;
 
     private Aim AimController;
+
+    private PlayerBattery plBattery;
+
+    private SynchronizationController syncController;
+    private List<OnlineCharacter> onlinePlayersList;
+
+    private bool summonInProgress;
     
     protected virtual void Start()
     {
         rg = GetComponent<Rigidbody2D>();
         AimController = GameObject.Find("Map").GetComponent<Aim>();
-       
+
+        plBattery = GetComponent<PlayerBattery>();
+        syncController = GameObject.Find("SynchronizationController").GetComponent<SynchronizationController>();
+
+        summonInProgress = false;
+
     }
 
 
@@ -169,27 +184,34 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void OnThirdSkillUse()
     {
-        GameObject tank = GameObject.FindGameObjectWithTag("Tank");
-        GameObject hunter = GameObject.FindGameObjectWithTag("Hunter");
-        GameObject support = GameObject.FindGameObjectWithTag("Support");
-        if (tank != null)
-        {
-            Teleport(tank);
-        }
 
-        if (hunter != null)
-        {
-            Teleport(hunter);
-        }
+        if (summonInProgress)
+            return;
         
-        if (support != null)
+        onlinePlayersList = syncController.OnlineCharacters.Where(x => x.Value.Character != "Boss")
+            .Select(x => x.Value)
+            .ToList();
+
+        foreach (OnlineCharacter onPlayer in onlinePlayersList)
         {
-            Teleport(support);
+            Teleport(onPlayer.gameObject);
+            StartCoroutine(startSummon());
         }
+       
     }
     
     private void Teleport(GameObject teleportGameObj)
     {
         teleportGameObj.transform.position = new Vector3(transform.position.x, transform.position.y);
+        plBattery.discharge();
+    }
+
+    IEnumerator startSummon()
+    {
+
+        summonInProgress = true;
+        yield return new WaitForSeconds(5);
+        summonInProgress = false;
+
     }
 }
