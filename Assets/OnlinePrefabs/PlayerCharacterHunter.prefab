@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114292855989857934}
   - component: {fileID: 114378721583939394}
   - component: {fileID: 114505882281580630}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerCharacterHunter
   m_TagString: Hunter
   m_Icon: {fileID: 0}
@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f1190b4b9fcdc4459230c1538871485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShotDamage: 5
   shootMask:
     serializedVersion: 2
     m_Bits: 256

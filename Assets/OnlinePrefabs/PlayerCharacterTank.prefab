@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114668396129926300}
   - component: {fileID: 114489777053790284}
   - component: {fileID: 114544204725737268}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerCharacterTank
   m_TagString: Tank
   m_Icon: {fileID: 0}
@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c208fbdba82a3418e40399b2dc4132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShotDamage: 5
   shootMask:
     serializedVersion: 2
     m_Bits: 256

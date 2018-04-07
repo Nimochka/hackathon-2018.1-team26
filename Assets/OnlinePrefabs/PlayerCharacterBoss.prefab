@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 114313135401636212}
   - component: {fileID: 114198406677583302}
   - component: {fileID: 114218326243478344}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerCharacterBoss
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be8a841efa15b084894ae8ea3c8d3ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShotDamage: 10
   shootMask:
     serializedVersion: 2
     m_Bits: 256

@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 114415269562673744}
   - component: {fileID: 114314024017732302}
   - component: {fileID: 114246256577051082}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerCharacterSupport
   m_TagString: Support
   m_Icon: {fileID: 0}
@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8486f1b4507f32c4c98aa3c0b6242344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShotDamage: 5
   shootMask:
     serializedVersion: 2
     m_Bits: 256
