@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Hunter : Character
 {
@@ -11,6 +13,9 @@ public class Hunter : Character
 
     private bool poisonInProgress;
     private bool teleportToBossInProgress;
+    
+    private SynchronizationController syncController;
+    private List<OnlineCharacter> onlinePlayersList;
     
     protected override void Start()
     {
@@ -40,7 +45,11 @@ public class Hunter : Character
         if (plBattery.currentEnergy < 3 || teleportToBossInProgress)
             return;
         
-        GameObject boss = FindObjectOfType<Boss>().gameObject;
+        onlinePlayersList = syncController.OnlineCharacters.Where(x => x.Value.Character == "Boss")
+            .Select(x => x.Value)
+            .ToList();
+        
+        GameObject boss = onlinePlayersList[0].gameObject;
         Vector3 bossPosition = boss.transform.position;
         Vector3 bossForward = boss.transform.up;
         transform.position = new Vector3(bossPosition.x - (bossForward.x * 30), bossPosition.y - (bossForward.y * 30));
