@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Experimental.UIElements;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -10,11 +8,29 @@ namespace UI
     {
         public InputField NetAddressField;
 
+        private bool loadNextScene;
+
+
+        void Start()
+        {
+            SocketController.OnPlayerConnectSuccess += () =>
+            {
+                loadNextScene = true;
+            };
+            SocketController.OnPlayerConnectFail += SocketController.Close;
+        }
+
+
+        void Update()
+        {
+            if (loadNextScene)
+                SceneManager.LoadScene("GameLobby");
+        }
+
+
         public void ConnectToServer()
         {
-            Debug.Log(NetAddressField.text);
-            //TODO при успешном подключении загружать главную сцену
-            SceneManager.LoadScene("Lobby");
+            SocketController.Connect(NetAddressField.text);
         }
     }
 }
