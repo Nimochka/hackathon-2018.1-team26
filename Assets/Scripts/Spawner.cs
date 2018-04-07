@@ -3,21 +3,25 @@
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject PlayerCharacterPrefab, OnlineCharacterPrefab;
+    public GameObject PlayerHunter, PlayerTank, PlayerSupport, PlayerBoss, OnlineCharacterPrefab;
 
 
     void Start()
     {
-        //SocketController.OnSocketOpen += () => SpawnPlayerCharacter();
-
-        GameObject playerCharacter = Instantiate(PlayerCharacterPrefab);
-        Camera.main.GetComponent<CameraFollow>().FollowTarget = playerCharacter.transform;
+        SpawnPlayerCharacter();
     }
 
 
     public PlayerCharacter SpawnPlayerCharacter()
     {
-        PlayerCharacter playerCharacter = Instantiate(PlayerCharacterPrefab).GetComponent<PlayerCharacter>();
+        GameObject prefab = PlayerBoss;
+        if (SocketController.Character == "Tank")
+            prefab = PlayerTank;
+        else if (SocketController.Character == "Support")
+            prefab = PlayerSupport;
+        else if (SocketController.Character == "Hunter")
+            prefab = PlayerHunter;
+        PlayerCharacter playerCharacter = Instantiate(prefab).GetComponent<PlayerCharacter>();
         Camera.main.GetComponent<CameraFollow>().FollowTarget = playerCharacter.transform;
         return playerCharacter;
     }

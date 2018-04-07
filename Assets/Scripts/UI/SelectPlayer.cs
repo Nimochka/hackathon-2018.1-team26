@@ -12,10 +12,14 @@ namespace UI
         public GameObject SelectMark;
 
 
-        public void SetSelected(bool isSelected)
+        public void SetSelected(string socketId)
         {
+            bool isSelected = socketId != "";
             IsSelected = isSelected;
             SelectMark.SetActive(isSelected);
+
+            if (SocketController.SocketId == socketId)
+                SocketController.Character = PlayerType;
         }
 
 

@@ -8,7 +8,7 @@ public partial class SocketController : MonoBehaviour
 
     private static SocketIOComponent socket;
 
-    public static string SocketId;
+    public static string SocketId, Character;
 
 
     void Start()
@@ -25,7 +25,7 @@ public partial class SocketController : MonoBehaviour
         socket.On("connect:success", ResponsePlayerConnectSuccess);
         socket.On("connect:failure", ResponsePlayerConnectFail);
 
-        //socket.Connect();
+        socket.Connect();
     }
 
 

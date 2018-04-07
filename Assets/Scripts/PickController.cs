@@ -47,10 +47,10 @@ public class PickController : MonoBehaviour
 
     private void GetPick(Pick pick)
     {
-        BossSelect.SetSelected(pick.Boss != "");
-        TankSelect.SetSelected(pick.Tank != "");
-        HunterSelect.SetSelected(pick.Hunter != "");
-        SupportSelect.SetSelected(pick.Support != "");
+        BossSelect.SetSelected(pick.Boss);
+        TankSelect.SetSelected(pick.Tank);
+        HunterSelect.SetSelected(pick.Hunter);
+        SupportSelect.SetSelected(pick.Support);
     }
 
 }

@@ -2,10 +2,10 @@
 
 public class Hunter : Character
 {
-    
+
     [SerializeField] private float moveSpeed;
     public GameObject poisonArrow;
-    
+
     protected override void Start()
     {
         base.Start();
@@ -21,7 +21,7 @@ public class Hunter : Character
 
     protected override void OnSecondarySkillUse()
     {
-        GameObject boss = GameObject.Find("Boss");
+        GameObject boss = FindObjectOfType<Boss>().gameObject;
         Vector3 bossPosition = boss.transform.position;
         Vector3 bossForward = boss.transform.up;
         transform.position = new Vector3(bossPosition.x - (bossForward.x * 30), bossPosition.y - (bossForward.y * 30));
