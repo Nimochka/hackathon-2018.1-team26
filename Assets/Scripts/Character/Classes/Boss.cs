@@ -22,6 +22,7 @@ public class Boss : Character
 
     protected override void Update()
     {
+        Shoot(bullet);
         if (stunTime <= 0)
         {
             base.Update();
