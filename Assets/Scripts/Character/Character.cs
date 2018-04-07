@@ -141,7 +141,8 @@ public abstract class Character : MonoBehaviour
         if (Time.time > nextFire) {
             nextFire = Time.time;
 
-            GameObject sBullet = Instantiate(bulletObject, muzzle.transform.position, muzzle.transform.rotation) as GameObject;
+            bullet sBullet = Instantiate(bulletObject, muzzle.transform.position, muzzle.transform.rotation).GetComponent<bullet>();
+            sBullet.Shooter = gameObject;
             
             GameObject.Destroy(sBullet, 1f);
 

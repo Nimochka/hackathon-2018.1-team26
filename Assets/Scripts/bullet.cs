@@ -12,6 +12,7 @@ public class bullet : MonoBehaviour
     private bool Hit;
 
     public bool IsOnlineBullet;
+    public GameObject Shooter;
 
     void Awake()
     {
@@ -55,23 +56,17 @@ public class bullet : MonoBehaviour
 
     void HitOnShootable(Collider2D other)
     {
-        OnlineCharacter onlineCharacter = other.gameObject.GetComponent<OnlineCharacter>();
-        if (onlineCharacter != null)
+        if (other.gameObject != Shooter)
         {
-            if (!IsOnlineBullet)
-                SocketController.RequstPlayerHealthChanged(new ChangeHealthData(onlineCharacter.SocketId, 1));
+            OnlineCharacter onlineCharacter = other.gameObject.GetComponent<OnlineCharacter>();
+            if (onlineCharacter != null)
+            {
+                if (!IsOnlineBullet)
+                    SocketController.RequstPlayerHealthChanged(new ChangeHealthData(onlineCharacter.SocketId, 1));
 
-            RemoveForce();
-            Destroy(gameObject);
+                RemoveForce();
+                Destroy(gameObject);
+            }
         }
-        //else if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
-        //{
-
-        //    PlayerHealth plHealt = other.gameObject.GetComponent<PlayerHealth>();
-        //    plHealt.addDamage(1f);
-
-        //    RemoveForce();
-        //    Destroy(gameObject);
-        //}
     }
 }

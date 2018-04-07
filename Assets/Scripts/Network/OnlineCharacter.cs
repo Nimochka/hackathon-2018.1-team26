@@ -45,6 +45,7 @@ public class OnlineCharacter : MonoBehaviour
     {
         bullet bullet = Instantiate(Bullet, shotData.Position, Quaternion.Euler(shotData.Rotation)).GetComponent<bullet>();
         bullet.IsOnlineBullet = true;
+        bullet.Shooter = gameObject;
         Destroy(bullet, 1f);
 
         GameObject muzzleFlash = Instantiate(MuzzleFlashPrefab, Muzzle.transform.position, transform.rotation, transform);
