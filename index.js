@@ -10,9 +10,9 @@ const io = socketIO(server);
 io.on('connection', socket => {
     console.log(`player connected ${socket.id}`);
 
-    socket.on('request:player:tick', data => {
-        socket.broadcast.emit('response:player:tick', data);
-    });
+    socket.on('request:player:tick', data => socket.broadcast.emit('response:player:tick', data));
+    socket.on('request:player:changehealth', data => socket.broadcast.emit('response:player:changehealth', data));
+    socket.on('request:player:shot', data => socket.broadcast.emit('response:player:shot', data));
 
     socket.on('disconnect', () => console.log(`player ${socket.id} disconnected`));
 });
