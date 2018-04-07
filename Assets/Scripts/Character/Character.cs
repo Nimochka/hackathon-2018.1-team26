@@ -19,16 +19,20 @@ public abstract class Character : MonoBehaviour
     [SerializeField] GameObject muzzle;
     [SerializeField] private float fireRate;
     [SerializeField] private GameObject bullet;
+    [SerializeField] private float cursorMulty;
     public bool OnlinePlayer;
     
     float nextFire = 0f;
 
     private Rigidbody2D rg;
 
-
+    private Aim AimController;
+    
     protected virtual void Start()
     {
         rg = GetComponent<Rigidbody2D>();
+        AimController = GameObject.Find("Map").GetComponent<Aim>();
+       
     }
 
 
@@ -61,7 +65,23 @@ public abstract class Character : MonoBehaviour
         Vector3 dir = new Vector3(0,0,0);
 
         objectPos = Camera.main.WorldToScreenPoint(transform.position);
-        dir = Input.mousePosition - objectPos; 
+       // dir = Input.mousePosition - objectPos;
+
+        if (!AimController.lockCursor)
+        {
+            dir = AimController.mPos - objectPos;
+        }
+        else
+        {
+            dir = AimController.worldLock - new Vector2(transform.position.x, transform.position.y);
+
+            //Если расстояние больше 80 юнитов то обрываем лок курсора
+            if (Vector2.Distance(transform.position, AimController.worldLock) > 80f)
+                AimController.lockCursor = false;
+
+        }
+        
+        
 	
         transform.rotation = Quaternion.Euler(new Vector3(0,0,Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg - 90));;
         
@@ -94,6 +114,26 @@ public abstract class Character : MonoBehaviour
                 OnThirdSkillUse();
             }
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+
+            AimController.lockCursor = true;
+            AimController.worldLock = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            AimController.lockCursor = false;
+        }
+
+        if (AimController.lockCursor)
+        {
+            //AimController.charVelocity = rg.velocity/cursorMulty;
+            
+        }
+            
+        
+
     }
     
     protected virtual void Shoot (GameObject bulletObject)
