@@ -5,6 +5,7 @@ using UnityEngine;
 public class SynchronizationController : MonoBehaviour
 {
     public readonly Dictionary<string, OnlineCharacter> OnlineCharacters = new Dictionary<string, OnlineCharacter>();
+
     public static PlayerCharacter PlayerCharacter;
 
     public Spawner Spawner;
