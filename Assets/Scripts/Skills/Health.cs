@@ -10,7 +10,6 @@ namespace Skills
             if (otherGo.name == "Hunter" || otherGo.name == "Tank")
             {
                 otherGo.GetComponent<Character>().HealthPoints += 1;
-                Debug.Log(otherGo.GetComponent<Character>().HealthPoints);
             }
         }
     }

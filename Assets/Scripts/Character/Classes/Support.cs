@@ -9,16 +9,26 @@ public class Support : Character
 {
     [SerializeField] private float moveSpeed;
     public GameObject health;
+    public GameObject trap;
     
     protected override void Start()
     {
-        HealthPoints = 4;
         base.Start();
-
+        HealthPoints = 4;
+        MoveSpeed = moveSpeed;
     }
     
     protected override void OnMainSkillUse()
     {
         Shoot(health);
+    }
+
+    protected override void OnSecondarySkillUse()
+    {
+        Vector3 pos = transform.position;
+        pos.x += transform.up.x * 20;
+        pos.y += transform.up.y * 20;
+        GameObject sBullet = Instantiate(trap, pos, transform.rotation) as GameObject;
+        sBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.up.x * 90, transform.up.y * 90);
     }
 }

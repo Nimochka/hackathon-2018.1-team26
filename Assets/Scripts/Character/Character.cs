@@ -17,7 +17,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField] LayerMask shootMask;
     [SerializeField] GameObject muzzleFlash;
     [SerializeField] GameObject muzzle;
-    [SerializeField] private GameObject bullet;
+    [SerializeField] protected GameObject bullet;
     public bool OnlinePlayer;
     
     float nextFire = 0f;
@@ -34,7 +34,7 @@ public abstract class Character : MonoBehaviour
     }
 
 
-    private void Move()
+    public virtual void Move()
     {
         
         Vector2 rigV = rg.velocity;
@@ -94,33 +94,31 @@ public abstract class Character : MonoBehaviour
                 Shoot(bullet);
             }
 
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 OnMainSkillUse();
             }
         
-            if (Input.GetKey(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 OnSecondarySkillUse();
             }
         
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 OnThirdSkillUse();
             }
-        }
+            if (Input.GetMouseButtonDown(1))
+            {
 
-        if (Input.GetMouseButtonDown(1))
-        {
-
-            AimController.lockCursor = true;
-            AimController.worldLock = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                AimController.lockCursor = true;
+                AimController.worldLock = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            }
+            else if (Input.GetMouseButtonUp(1))
+            {
+                AimController.lockCursor = false;
+            }
         }
-        else if (Input.GetMouseButtonUp(1))
-        {
-            AimController.lockCursor = false;
-        }
-          
     }
     
     protected virtual void Shoot (GameObject bulletObject)
