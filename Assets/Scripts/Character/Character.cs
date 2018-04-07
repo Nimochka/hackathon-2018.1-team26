@@ -2,7 +2,7 @@
 
 public abstract class Character : MonoBehaviour
 {
-    public int HealthPoints { get; protected set; }
+    public int HealthPoints { get; set; }
     public int HealthCapacity { get; protected set; }
 
     public int BatteryCharge { get; protected set; }

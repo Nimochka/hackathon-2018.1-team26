@@ -9,31 +9,33 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1555370124725650}
+  m_RootGameObject: {fileID: 1752227834767184}
   m_IsPrefabParent: 1
---- !u!1 &1555370124725650
+--- !u!1 &1752227834767184
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4931081990019210}
-  - component: {fileID: 212357587658137796}
-  - component: {fileID: 114102942770041770}
-  m_Layer: 0
-  m_Name: PoisonArrow
-  m_TagString: Untagged
+  - component: {fileID: 4807067164681868}
+  - component: {fileID: 212601966506094304}
+  - component: {fileID: 50086698992622506}
+  - component: {fileID: 61354919865507090}
+  - component: {fileID: 114052816271635120}
+  m_Layer: 8
+  m_Name: Health
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4931081990019210
+--- !u!4 &4807067164681868
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1555370124725650}
+  m_GameObject: {fileID: 1752227834767184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -41,25 +43,70 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114102942770041770
+--- !u!50 &50086698992622506
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1752227834767184}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &61354919865507090
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1752227834767184}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3, y: 3}
+    newSize: {x: 3, y: 3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3}
+  m_EdgeRadius: 0
+--- !u!114 &114052816271635120
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1555370124725650}
+  m_GameObject: {fileID: 1752227834767184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7df84441f6e5b204d8d5e5ec0e60a3b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 683397961f5f45c29f4ef0e0289f6ac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rocketSpeed: 300
+  rocketSpeed: 150
   bulletDirection: {x: 0, y: 0}
---- !u!212 &212357587658137796
+--- !u!212 &212601966506094304
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1555370124725650}
+  m_GameObject: {fileID: 1752227834767184}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
