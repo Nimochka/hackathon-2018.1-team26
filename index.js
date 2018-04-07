@@ -66,6 +66,8 @@ function pickCharacter(data) {
             pick.Support = data.SocketId;
     }
     io.emit('response:character:pick', pick);
+    if (pick.Boss != null && pick.Tank != null && pick.Support != null && pick.Hunter != null)
+        io.emit('response:game:start');
 }
 
 server.listen(3000, function () {
