@@ -39,21 +39,29 @@ public class Tank : Character
     {
         if (!mainSkillLock)
         {
+
+            if (plBattery.currentEnergy < 4)
+                return;
+            
             Vector3 pos = transform.position;
             pos.x += transform.up.x * 20;
             pos.y += transform.up.y * 20;
             GameObject sShield = Instantiate(shield, pos, transform.rotation) as GameObject;
             mainSkillLock = true;
-            plBattery.discharge();
+            plBattery.discharge(4);
         }
     }
 
     protected override void OnSecondarySkillUse()
     {
+        
+        if (plBattery.currentEnergy < 4)
+            return;
+        
         if (!assistInProgress)
         {
             GameObject sAssist = Instantiate(assist, transform.position, transform.rotation);
-            plBattery.discharge();
+            plBattery.discharge(4);
             StartCoroutine(startAssist());
         }
     }

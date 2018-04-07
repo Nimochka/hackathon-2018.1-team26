@@ -57,12 +57,12 @@ public class PlayerBattery : MonoBehaviour {
 
 	}
 
-	public void discharge()
+	public void discharge(float countEnergy)
 	{
 		if (currentEnergy == 0)
 			return;
 
-		currentEnergy--;
+		currentEnergy -= countEnergy;
 		energyBar.value = currentEnergy;
 
 	}

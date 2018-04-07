@@ -212,8 +212,12 @@ public abstract class Character : MonoBehaviour
     
     private void Teleport(GameObject teleportGameObj)
     {
+
+        if (plBattery.currentEnergy < 2)
+            return;
+        
         teleportGameObj.transform.position = new Vector3(transform.position.x, transform.position.y);
-        plBattery.discharge();
+        plBattery.discharge(2);
     }
 
     IEnumerator startSummon()
