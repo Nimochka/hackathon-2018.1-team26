@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 50120406434937764}
   - component: {fileID: 114718207899289406}
   - component: {fileID: 114292855989857934}
+  - component: {fileID: 114378721583939394}
   m_Layer: 0
   m_Name: PlayerCharacterHunter
   m_TagString: Untagged
@@ -119,6 +120,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57d2504cbddd5d2478f115222320cd11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114378721583939394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1214378589530996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 436baa3e84f8b1246ae5f76e808fe6f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullHealth: 10
+  healthBar: {fileID: 114602248737924138, guid: 7f9f6d1cc2ecd1441ba531202238331d,
+    type: 2}
+  damageScreen: {fileID: 114225232821463264, guid: 7f9f6d1cc2ecd1441ba531202238331d,
+    type: 2}
 --- !u!114 &114718207899289406
 MonoBehaviour:
   m_ObjectHideFlags: 1

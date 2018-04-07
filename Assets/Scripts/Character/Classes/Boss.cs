@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ public class Boss : Character
         MoveSpeed = moveSpeed;
         HealthPoints = 4;
         BatteryCharge = 4;
+        
     }
 
     protected override void Update()
@@ -41,4 +43,7 @@ public class Boss : Character
             stunTime -= Time.deltaTime;
         }
     }
+
+
+    
 }

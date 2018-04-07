@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 50180345127769044}
   - component: {fileID: 114658574722212554}
   - component: {fileID: 114668396129926300}
+  - component: {fileID: 114489777053790284}
   m_Layer: 0
   m_Name: PlayerCharacterTank
   m_TagString: Untagged
@@ -108,6 +109,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 9
+--- !u!114 &114489777053790284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1915966055194368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 436baa3e84f8b1246ae5f76e808fe6f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullHealth: 10
+  healthBar: {fileID: 114602248737924138, guid: 7f9f6d1cc2ecd1441ba531202238331d,
+    type: 2}
+  damageScreen: {fileID: 114225232821463264, guid: 7f9f6d1cc2ecd1441ba531202238331d,
+    type: 2}
 --- !u!114 &114658574722212554
 MonoBehaviour:
   m_ObjectHideFlags: 1
