@@ -11,6 +11,8 @@ public class OnlineCharacter : MonoBehaviour
     public GameObject Bullet, Muzzle;
     public GameObject MuzzleFlashPrefab;
 
+    public SpriteRenderer SpriteRenderer;
+
 
     public void ReceiveTick(TickData tickData)
     {
@@ -50,6 +52,13 @@ public class OnlineCharacter : MonoBehaviour
 
         GameObject muzzleFlash = Instantiate(MuzzleFlashPrefab, Muzzle.transform.position, transform.rotation, transform);
         Destroy(muzzleFlash, 0.1f);
+    }
+
+
+    public void Die()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        SpriteRenderer.color = Color.red;
     }
 
 }

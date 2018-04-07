@@ -19,6 +19,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField] GameObject muzzle;
     [SerializeField] protected GameObject bullet;
     public bool OnlinePlayer;
+    public bool IsDead; 
     
     float nextFire = 0f;
 
@@ -35,8 +36,7 @@ public abstract class Character : MonoBehaviour
 
 
     public virtual void Move()
-    {
-        
+    {   
         Vector2 rigV = Vector2.zero;
 
         //Player Movement
@@ -90,7 +90,7 @@ public abstract class Character : MonoBehaviour
     protected virtual void Update()
     {
 
-        if (!OnlinePlayer)
+        if (!OnlinePlayer && !IsDead)
         {
             if(Input.GetMouseButtonDown(0)){
                 Shoot(bullet);
@@ -154,7 +154,7 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        if (!OnlinePlayer)
+        if (!OnlinePlayer && !IsDead)
         {
             Move(); 
         }
