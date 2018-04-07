@@ -17,9 +17,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField] LayerMask shootMask;
     [SerializeField] GameObject muzzleFlash;
     [SerializeField] GameObject muzzle;
-    [SerializeField] private float fireRate;
     [SerializeField] private GameObject bullet;
-    [SerializeField] private float cursorMulty;
     public bool OnlinePlayer;
     
     float nextFire = 0f;
@@ -65,7 +63,6 @@ public abstract class Character : MonoBehaviour
         Vector3 dir = new Vector3(0,0,0);
 
         objectPos = Camera.main.WorldToScreenPoint(transform.position);
-       // dir = Input.mousePosition - objectPos;
 
         if (!AimController.lockCursor)
         {
@@ -84,9 +81,7 @@ public abstract class Character : MonoBehaviour
         
 	
         transform.rotation = Quaternion.Euler(new Vector3(0,0,Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg - 90));;
-        
-//        Vector2 velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized * MoveSpeed;
-//        rg.velocity = velocity;
+
     }
 
 
@@ -125,15 +120,7 @@ public abstract class Character : MonoBehaviour
         {
             AimController.lockCursor = false;
         }
-
-        if (AimController.lockCursor)
-        {
-            //AimController.charVelocity = rg.velocity/cursorMulty;
-            
-        }
-            
-        
-
+          
     }
     
     protected virtual void Shoot (GameObject bulletObject)
@@ -152,14 +139,14 @@ public abstract class Character : MonoBehaviour
     {
         
         if (Time.time > nextFire) {
-            nextFire = Time.time + fireRate;
+            nextFire = Time.time;
 
             GameObject sBullet = Instantiate(bulletObject, muzzle.transform.position, muzzle.transform.rotation) as GameObject;
             
             GameObject.Destroy(sBullet, 1f);
 
-//            SocketController.RequestPlayerShot(new ShotData(SocketController.SocketId, muzzle.transform.position,
-//                muzzle.transform.rotation.eulerAngles));
+            SocketController.RequestPlayerShot(new ShotData(SocketController.SocketId, muzzle.transform.position,
+                muzzle.transform.rotation.eulerAngles));
         }
         
     }
