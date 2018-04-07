@@ -1,4 +1,4 @@
-﻿﻿﻿using UnityEngine;
+﻿﻿using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -8,10 +8,8 @@ public class Spawner : MonoBehaviour
     public GameObject OnlineHunter, OnlineTank, OnlineSupport, OnlineBoss;
 
     public Slider HealthBar;
-    public Image DamageScreen;  
-    
-    public Slider ChargeBar;
-    public Image ChargeScreen;
+
+    public Image DamageScreen;
 
 
     void Start()
@@ -22,8 +20,7 @@ public class Spawner : MonoBehaviour
 
     public PlayerCharacter SpawnPlayerCharacter()
     {
-        //GameObject prefab = PlayerBoss;
-        GameObject prefab = PlayerHunter;
+        GameObject prefab = PlayerBoss;
         if (SocketController.Character == "Tank")
             prefab = PlayerTank;
         else if (SocketController.Character == "Support")
@@ -35,16 +32,12 @@ public class Spawner : MonoBehaviour
         PlayerHealth playerHealth = playerCharacter.GetComponent<PlayerHealth>();
         playerHealth.damageScreen = DamageScreen;
         playerHealth.healthBar = HealthBar;
-        
-        PlayerBattery playerBattery = playerCharacter.GetComponent<PlayerBattery>();
-        playerBattery.chargeScreen = ChargeScreen;
-        playerBattery.energyBar = ChargeBar;
-        
+        SynchronizationController.PlayerCharacter = playerCharacter;
         return playerCharacter;
     }
 
 
-    public OnlineCharacter SpawnOnlineCharacter(string character)
+    public OnlineCharacter SpawnOnlineCharacter(string character, string socketId)
     {
         GameObject prefab = OnlineBoss;
         if (character == "Tank")
@@ -54,6 +47,7 @@ public class Spawner : MonoBehaviour
         else if (character == "Hunter")
             prefab = OnlineHunter;
         OnlineCharacter onlineCharacter = Instantiate(prefab).GetComponent<OnlineCharacter>();
+        onlineCharacter.SocketId = socketId;
         return onlineCharacter;
     }
 
