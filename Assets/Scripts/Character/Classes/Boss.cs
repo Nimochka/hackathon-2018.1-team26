@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class Boss : Character
 {
     [SerializeField] private float moveSpeed;
     public float stunTime = 0;
-    
+
+    private float regenTimer;
+
+
     protected override void Start()
     {
         base.Start();
         MoveSpeed = moveSpeed;
-        HealthPoints = 4;
-        BatteryCharge = 4;
-        
+        BatteryCharge = 10;
+
     }
 
     protected override void Update()
@@ -31,20 +28,14 @@ public class Boss : Character
         {
             stunTime -= Time.deltaTime;
         }
+
+
+        if (BatteryCharge < 10)
+        {
+            regenTimer += Time.deltaTime;
+            if (regenTimer > 3)
+                ++BatteryCharge;
+        }
     }
 
-    //protected override void FixedUpdate()
-    //{
-    //    if (stunTime <= 0)
-    //    {
-    //        base.FixedUpdate();
-    //    }
-    //    else
-    //    {
-    //        stunTime -= Time.deltaTime;
-    //    }
-    //}
-
-
-    
 }

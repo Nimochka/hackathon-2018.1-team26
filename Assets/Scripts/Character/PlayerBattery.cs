@@ -84,8 +84,6 @@ public class PlayerBattery : MonoBehaviour {
 
 				float DistanceAura = Vector2.Distance(transform.position,
 					new Vector2(onPlayer.transform.position.x, onPlayer.transform.position.y));
-
-				Debug.Log(DistanceAura);
 				
 				if (DistanceAura > 44)
 				{

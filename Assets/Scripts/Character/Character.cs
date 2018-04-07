@@ -17,6 +17,8 @@ public abstract class Character : MonoBehaviour
 
     public float MoveSpeed { get; protected set; }
 
+    public int ShotDamage;
+
     [SerializeField] LayerMask shootMask;
     [SerializeField] GameObject muzzleFlash;
     [SerializeField] GameObject muzzle;
@@ -51,33 +53,37 @@ public abstract class Character : MonoBehaviour
 
 
     public virtual void Move()
-    {   
+    {
         Vector2 rigV = Vector2.zero;
 
         //Player Movement
-        if(Input.GetKey(KeyCode.W)){
+        if (Input.GetKey(KeyCode.W))
+        {
             rigV.y = MoveSpeed;
         }
-		
-        if(Input.GetKey(KeyCode.A)){
+
+        if (Input.GetKey(KeyCode.A))
+        {
             rigV.x = -MoveSpeed;
         }
-		
-        if(Input.GetKey(KeyCode.S)){
+
+        if (Input.GetKey(KeyCode.S))
+        {
             rigV.y = -MoveSpeed;
         }
-		
-        if(Input.GetKey(KeyCode.D)){
+
+        if (Input.GetKey(KeyCode.D))
+        {
             rigV.x = MoveSpeed;
         }
 
         rigV.Normalize();
         rigV *= MoveSpeed;
         rg.velocity = rigV;
-        
+
         //Player Rotation
-        Vector3 objectPos = new Vector3(0,0,0);
-        Vector3 dir = new Vector3(0,0,0);
+        Vector3 objectPos = new Vector3(0, 0, 0);
+        Vector3 dir = new Vector3(0, 0, 0);
 
         objectPos = Camera.main.WorldToScreenPoint(transform.position);
 
@@ -94,10 +100,10 @@ public abstract class Character : MonoBehaviour
                 AimController.lockCursor = false;
 
         }
-        
-        
-	
-        transform.rotation = Quaternion.Euler(new Vector3(0,0,Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg - 90));;
+
+
+
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90)); ;
 
     }
 
@@ -107,7 +113,8 @@ public abstract class Character : MonoBehaviour
 
         if (!OnlinePlayer && !IsDead)
         {
-            if(Input.GetMouseButtonDown(0)){
+            if (Input.GetMouseButtonDown(0))
+            {
                 Shoot(bullet);
             }
 
@@ -115,12 +122,12 @@ public abstract class Character : MonoBehaviour
             {
                 OnMainSkillUse();
             }
-        
+
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 OnSecondarySkillUse();
             }
-        
+
             if (Input.GetKeyDown(KeyCode.E))
             {
                 OnThirdSkillUse();
@@ -137,34 +144,37 @@ public abstract class Character : MonoBehaviour
             }
         }
     }
-    
-    protected virtual void Shoot (GameObject bulletObject)
+
+    protected virtual void Shoot(GameObject bulletObject)
     {
-        	
+
         GameObject mf = Instantiate(muzzleFlash, muzzle.transform.position, transform.rotation) as GameObject;
         mf.transform.parent = transform;
 
         fireBullet(bulletObject);
-        
+
         GameObject.Destroy(mf, 0.1f);
-        
+
     }
 
     protected virtual void fireBullet(GameObject bulletObject)
     {
-        
-        if (Time.time > nextFire) {
+
+        if (Time.time > nextFire)
+        {
             nextFire = Time.time;
 
             bullet sBullet = Instantiate(bulletObject, muzzle.transform.position, muzzle.transform.rotation).GetComponent<bullet>();
             sBullet.Shooter = gameObject;
-            
+            sBullet.Damage = ShotDamage;
+
+
             GameObject.Destroy(sBullet, 1f);
 
             SocketController.RequestPlayerShot(new ShotData(SocketController.SocketId, muzzle.transform.position,
                 muzzle.transform.rotation.eulerAngles));
         }
-        
+
     }
 
     protected virtual void FixedUpdate()

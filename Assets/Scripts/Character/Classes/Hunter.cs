@@ -10,8 +10,7 @@ public class Hunter : Character
     {
         base.Start();
         MoveSpeed = moveSpeed;
-        HealthPoints = 4;
-        BatteryCharge = 4;
+        BatteryCharge = 10;
     }
 
     protected override void OnMainSkillUse()

@@ -13,6 +13,7 @@ public class bullet : MonoBehaviour
 
     public bool IsOnlineBullet;
     public GameObject Shooter;
+    public int Damage;
 
     void Awake()
     {
@@ -61,8 +62,9 @@ public class bullet : MonoBehaviour
             OnlineCharacter onlineCharacter = other.gameObject.GetComponent<OnlineCharacter>();
             if (onlineCharacter != null)
             {
-                if (!IsOnlineBullet)
-                    SocketController.RequstPlayerHealthChanged(new ChangeHealthData(onlineCharacter.SocketId, 1));
+                if (!IsOnlineBullet && (SocketController.Character != "Boss" && onlineCharacter.Character == "Boss" ||
+                                        SocketController.Character == "Boss" && onlineCharacter.Character != "Boss"))
+                    SocketController.RequstPlayerHealthChanged(new ChangeHealthData(onlineCharacter.SocketId, Damage));
 
                 RemoveForce();
                 Destroy(gameObject);

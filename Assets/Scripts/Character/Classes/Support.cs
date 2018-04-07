@@ -14,7 +14,7 @@ public class Support : Character
     protected override void Start()
     {
         base.Start();
-        HealthPoints = 4;
+        BatteryCharge = 10;
         MoveSpeed = moveSpeed;
     }
     
