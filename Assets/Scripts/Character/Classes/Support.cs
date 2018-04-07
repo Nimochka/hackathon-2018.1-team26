@@ -38,26 +38,4 @@ public class Support : Character
         sBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.up.x * 90, transform.up.y * 90);
     }
     
-    /**
-     * Масс телепорт к себе
-     */
-    protected override void OnThirdSkillUse()
-    {
-        GameObject tank = GameObject.Find("Tank");
-        GameObject hunter = GameObject.Find("Hunter");
-        if (tank != null)
-        {
-            Teleport(tank);
-        }
-
-        if (hunter != null)
-        {
-            Teleport(hunter);
-        }
-    }
-
-    private void Teleport(GameObject teleportGameObj)
-    {
-        teleportGameObj.transform.position = new Vector3(transform.position.x, transform.position.y);
-    }
 }
