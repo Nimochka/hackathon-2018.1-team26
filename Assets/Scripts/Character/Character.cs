@@ -73,45 +73,45 @@ public abstract class Character : MonoBehaviour
     {
         
         if(Input.GetMouseButtonDown(0)){
-             Shoot();
+             Shoot(bullet);
         }
 
+        if (Input.GetKey(KeyCode.Space))
+        {
+            OnMainSkillUse();
+        }
+        
         if (Input.GetKey(KeyCode.Q))
         {
-            MainSkill.Use();
+            OnSecondarySkillUse();
         }
         
         if (Input.GetKey(KeyCode.E))
         {
-            SecondarySkill.Use();
-        }
-        
-        if (Input.GetKey(KeyCode.F))
-        {
-            ThirdSkill.Use();
+            OnThirdSkillUse();
         }
         
     }
     
-    protected virtual void Shoot ()
+    protected virtual void Shoot (GameObject bulletObject)
     {
         	
         GameObject mf = Instantiate(muzzleFlash, muzzle.transform.position, transform.rotation) as GameObject;
         mf.transform.parent = transform;
 
-        fireBullet();
+        fireBullet(bulletObject);
         
         GameObject.Destroy(mf, 0.1f);
         
     }
 
-    protected virtual void fireBullet()
+    protected virtual void fireBullet(GameObject bulletObject)
     {
         
         if (Time.time > nextFire) {
             nextFire = Time.time + fireRate;
 
-            GameObject sBullet = Instantiate(bullet, muzzle.transform.position, muzzle.transform.rotation) as GameObject;
+            GameObject sBullet = Instantiate(bulletObject, muzzle.transform.position, muzzle.transform.rotation) as GameObject;
             
             GameObject.Destroy(sBullet, 1f);
 
@@ -124,5 +124,16 @@ public abstract class Character : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         Move(); 
+    }
+
+    protected virtual void OnMainSkillUse()
+    {
+        
+    }
+
+    protected virtual void OnSecondarySkillUse(){}
+
+    protected virtual void OnThirdSkillUse()
+    {
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-public class Support : Character
+public class Boss : Character
 {
     protected override void Start()
     {

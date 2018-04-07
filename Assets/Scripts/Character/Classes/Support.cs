@@ -4,18 +4,12 @@ using System.Linq;
 using System.Text;
 
 
-public class Boss : Character
+public class Support : Character
 {
     protected override void Start()
     {
         HealthPoints = 4;
         base.Start();
 
-    }
-    
-    private class HealthSkill: Skill
-    {
-        
-        
     }
 }
