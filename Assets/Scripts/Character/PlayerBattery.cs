@@ -56,6 +56,16 @@ public class PlayerBattery : MonoBehaviour {
 		energyBar.value = currentEnergy;
 
 	}
+
+	public void discharge()
+	{
+		if (currentEnergy == 0)
+			return;
+
+		currentEnergy--;
+		energyBar.value = currentEnergy;
+
+	}
 	
 	// Update is called once per frame
 	void Update () {
