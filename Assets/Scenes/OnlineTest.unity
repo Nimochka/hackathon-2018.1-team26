@@ -418,7 +418,7 @@ MonoBehaviour:
   PlayerTank: {fileID: 1915966055194368, guid: ef1cb1842832adf49b3f0a138195db3a, type: 2}
   PlayerSupport: {fileID: 1718144210450140, guid: d379a4befac0e6848b8717361ff7bc12,
     type: 2}
-  PlayerBoss: {fileID: 1948087038533080, guid: 820a231f2bfff7f49ad5e7acaeeae8b5, type: 2}
+  PlayerBoss: {fileID: 1038340388486534, guid: 820a231f2bfff7f49ad5e7acaeeae8b5, type: 2}
   OnlineCharacterPrefab: {fileID: 1214378589530996, guid: 1c0c059a428447a469894aee24470a75,
     type: 2}
 --- !u!4 &1750753576
