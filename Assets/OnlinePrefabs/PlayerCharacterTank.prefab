@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114658574722212554}
   - component: {fileID: 114668396129926300}
   - component: {fileID: 114489777053790284}
+  - component: {fileID: 114544204725737268}
   m_Layer: 0
   m_Name: PlayerCharacterTank
   m_TagString: Tank
@@ -120,12 +121,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436baa3e84f8b1246ae5f76e808fe6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullHealth: 10
+  fullHealth: 50
   healthBar: {fileID: 114602248737924138, guid: 7f9f6d1cc2ecd1441ba531202238331d,
     type: 2}
   damageScreen: {fileID: 114225232821463264, guid: 7f9f6d1cc2ecd1441ba531202238331d,
     type: 2}
   SpriteRenderer: {fileID: 212898597399185090}
+--- !u!114 &114544204725737268
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1915966055194368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ced8908f79591749a9297d4a9ab0788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullEnergy: 10
+  currentEnergy: 10
+  energyBar: {fileID: 0}
+  chargeScreen: {fileID: 0}
 --- !u!114 &114658574722212554
 MonoBehaviour:
   m_ObjectHideFlags: 1

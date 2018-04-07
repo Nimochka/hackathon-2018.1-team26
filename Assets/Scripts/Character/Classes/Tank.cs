@@ -16,6 +16,7 @@ public class Tank : Character
     {
         base.Start();
         MoveSpeed = moveSpeed;
+        BatteryCharge = 10;
     }
 
     protected override void Shoot(GameObject bulletObject)

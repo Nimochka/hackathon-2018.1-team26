@@ -61,8 +61,9 @@ public class bullet : MonoBehaviour
             OnlineCharacter onlineCharacter = other.gameObject.GetComponent<OnlineCharacter>();
             if (onlineCharacter != null)
             {
-                if (!IsOnlineBullet)
-                    SocketController.RequstPlayerHealthChanged(new ChangeHealthData(onlineCharacter.SocketId, 1));
+                if (!IsOnlineBullet && (SocketController.Character != "Boss" && onlineCharacter.Character == "Boss" ||
+                                        SocketController.Character == "Boss" && onlineCharacter.Character != "Boss"))
+                    SocketController.RequstPlayerHealthChanged(new ChangeHealthData(onlineCharacter.SocketId, 5));
 
                 RemoveForce();
                 Destroy(gameObject);
