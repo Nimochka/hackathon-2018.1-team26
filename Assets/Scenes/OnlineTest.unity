@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 990553872}
   - component: {fileID: 990553871}
+  - component: {fileID: 990553873}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -186,6 +187,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &990553873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 990553870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f45d18935e05848b500192b2d3a532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouse: {x: 0, y: 0}
+  cursor: {fileID: 2800000, guid: 40abaf7f4316de94baadf558251b8f5e, type: 3}
+  cursorLock: {fileID: 2800000, guid: bb35a94eb255868469d9f6c0cd804304, type: 3}
+  wSize: 32
+  hSize: 32
+  lockCursor: 0
+  charVelocity: {x: 0, y: 0}
+  mPos: {x: 0, y: 0, z: 0}
+  worldLock: {x: 0, y: 0}
 --- !u!1 &1300662549
 GameObject:
   m_ObjectHideFlags: 0

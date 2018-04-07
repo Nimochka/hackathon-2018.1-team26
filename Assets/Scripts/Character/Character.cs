@@ -56,6 +56,8 @@ public abstract class Character : MonoBehaviour
             rigV.x = MoveSpeed;
         }
 
+        rigV.Normalize();
+        rigV *= MoveSpeed;
         rg.velocity = rigV;
         
         //Player Rotation

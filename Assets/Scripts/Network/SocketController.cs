@@ -20,6 +20,7 @@ public partial class SocketController : MonoBehaviour
         socket.On("response:player:changehealth", ResponsePlayerChangeHealth);
         socket.On("response:player:shot", ResponsePlayerShot);
         socket.On("response:character:pick", ResponseGetPick);
+        socket.On("response:game:start", ResponseGameStarted);
 
         socket.On("connect:success", ResponsePlayerConnectSuccess);
         socket.On("connect:failure", ResponsePlayerConnectFail);
