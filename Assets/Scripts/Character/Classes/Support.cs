@@ -13,7 +13,7 @@ public class Boss : Character
 
     }
     
-    private class HealtSkill: Skill
+    private class HealthSkill: Skill
     {
         
         
