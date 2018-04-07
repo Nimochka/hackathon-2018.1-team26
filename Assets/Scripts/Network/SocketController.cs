@@ -25,7 +25,7 @@ public partial class SocketController : MonoBehaviour
         socket.On("connect:success", ResponsePlayerConnectSuccess);
         socket.On("connect:failure", ResponsePlayerConnectFail);
 
-        //socket.Connect();
+        socket.Connect();
     }
 
 
