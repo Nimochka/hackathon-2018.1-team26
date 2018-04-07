@@ -26,6 +26,8 @@ public class Hunter : Character
         plBattery = GetComponent<PlayerBattery>();
         poisonInProgress = false;
         teleportToBossInProgress = false;
+        
+        syncController = GameObject.Find("SynchronizationController").GetComponent<SynchronizationController>();
 
     }
 
