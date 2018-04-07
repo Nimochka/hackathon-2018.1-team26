@@ -118,6 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ad910d698589844928b72f3858a613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Character: Hunter
+  SocketId: 
   Bullet: {fileID: 1955535305912116, guid: 4643fec7beb3c3e4eb192a6e5381c87d, type: 2}
   Muzzle: {fileID: 1930367681736788}
   MuzzleFlashPrefab: {fileID: 148364, guid: fe0b9bb43d8c694438303177acdfb462, type: 2}

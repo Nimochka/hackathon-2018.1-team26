@@ -31,11 +31,12 @@ public class Spawner : MonoBehaviour
         PlayerHealth playerHealth = playerCharacter.GetComponent<PlayerHealth>();
         playerHealth.damageScreen = DamageScreen;
         playerHealth.healthBar = HealthBar;
+        SynchronizationController.PlayerCharacter = playerCharacter;
         return playerCharacter;
     }
 
 
-    public OnlineCharacter SpawnOnlineCharacter(string character)
+    public OnlineCharacter SpawnOnlineCharacter(string character, string socketId)
     {
         GameObject prefab = OnlineBoss;
         if (character == "Tank")
@@ -45,6 +46,7 @@ public class Spawner : MonoBehaviour
         else if (character == "Hunter")
             prefab = OnlineHunter;
         OnlineCharacter onlineCharacter = Instantiate(prefab).GetComponent<OnlineCharacter>();
+        onlineCharacter.SocketId = socketId;
         return onlineCharacter;
     }
 

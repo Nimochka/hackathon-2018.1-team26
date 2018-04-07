@@ -3,6 +3,7 @@
 public class OnlineCharacter : MonoBehaviour
 {
     public string Character;
+    public string SocketId;
 
     private TickData prevTickData, newTickData;
     private float lerpTimer;
@@ -42,7 +43,8 @@ public class OnlineCharacter : MonoBehaviour
 
     public void FireBullet(ShotData shotData)
     {
-        GameObject bullet = Instantiate(Bullet, shotData.Position, Quaternion.Euler(shotData.Rotation));
+        bullet bullet = Instantiate(Bullet, shotData.Position, Quaternion.Euler(shotData.Rotation)).GetComponent<bullet>();
+        bullet.IsOnlineBullet = true;
         Destroy(bullet, 1f);
 
         GameObject muzzleFlash = Instantiate(MuzzleFlashPrefab, Muzzle.transform.position, transform.rotation, transform);
