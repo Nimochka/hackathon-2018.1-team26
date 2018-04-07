@@ -95,13 +95,7 @@ public abstract class Character : MonoBehaviour
     
     protected virtual void Shoot ()
     {
-        
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 400f, shootMask.value);
-		
-//        if(hit.collider != null){
-//            hit.collider.gameObject.SendMessage("Damaged", damage);
-//        }
-		
+        	
         GameObject mf = Instantiate(muzzleFlash, muzzle.transform.position, transform.rotation) as GameObject;
         mf.transform.parent = transform;
 

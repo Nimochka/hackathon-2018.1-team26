@@ -5,6 +5,7 @@ licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Sprites_Entities_0
+    21300002: Sprites_Entities_1
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -85,6 +86,20 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 82
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Sprites_Entities_1
+      rect:
+        serializedVersion: 2
+        x: 64
         y: 82
         width: 15
         height: 18
