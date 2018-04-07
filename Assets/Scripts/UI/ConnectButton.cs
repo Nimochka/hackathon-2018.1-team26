@@ -14,7 +14,7 @@ namespace UI
         {
             Debug.Log(NetAddressField.text);
             //TODO при успешном подключении загружать главную сцену
-            SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("Lobby");
         }
     }
 }
