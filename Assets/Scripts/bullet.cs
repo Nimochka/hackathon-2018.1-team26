@@ -9,28 +9,37 @@ public class bullet : MonoBehaviour {
 	private Rigidbody2D myRB;
 
 	public Vector2 bulletDirection;
+
+	private bool Hit;
 	
 	void Awake()
 	{
-		myRB = GetComponent<Rigidbody2D>();
-		
-		myRB.AddForce(transform.up * rocketSpeed, ForceMode2D.Impulse);
+//		myRB = GetComponent<Rigidbody2D>();
+//		
+//		myRB.AddForce(transform.up * rocketSpeed, ForceMode2D.Impulse);
 		
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
+
 		
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+		if (!Hit)
+			transform.position += transform.up * 500f * Time.deltaTime;
+		
 	}
 	
 	public void RemoveForce() {
 
-		myRB.velocity = new Vector2(0,0);
+		//myRB.velocity = new Vector2(0,0);
+		Hit = true;
 
 	}
 
@@ -45,6 +54,14 @@ public class bullet : MonoBehaviour {
 	{
 		if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
 		{
+			RemoveForce();
+			Destroy(gameObject);
+		} else if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+		{
+
+			PlayerHealth plHealt = other.gameObject.GetComponent<PlayerHealth>();
+			plHealt.addDamage(1f);
+			
 			RemoveForce();
 			Destroy(gameObject);
 		}

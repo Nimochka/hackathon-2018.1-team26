@@ -1,20 +1,32 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 namespace UI
 {
     public class SelectPlayer : MonoBehaviour, IPointerClickHandler
     {
         public string PlayerType;
-        private Color prevColor;
-        
-        
+
+        public bool IsSelected;
+
+        public GameObject SelectMark;
+
+
+        public void SetSelected(string socketId)
+        {
+            bool isSelected = socketId != "";
+            IsSelected = isSelected;
+            SelectMark.SetActive(isSelected);
+
+            if (SocketController.SocketId == socketId)
+                SocketController.Character = PlayerType;
+        }
+
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            //TODO отправка на сервер выбора персонажа
-            SceneManager.LoadScene("Main");
+            if (!IsSelected)
+                SocketController.RequestSelectCharacter(new PickData(SocketController.SocketId, PlayerType));
         }
     }
 }

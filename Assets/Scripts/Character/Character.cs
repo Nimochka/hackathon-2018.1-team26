@@ -37,7 +37,7 @@ public abstract class Character : MonoBehaviour
     public virtual void Move()
     {
         
-        Vector2 rigV = rg.velocity;
+        Vector2 rigV = Vector2.zero;
 
         //Player Movement
         if(Input.GetKey(KeyCode.W)){
@@ -56,6 +56,8 @@ public abstract class Character : MonoBehaviour
             rigV.x = MoveSpeed;
         }
 
+        rigV.Normalize();
+        rigV *= MoveSpeed;
         rg.velocity = rigV;
         
         //Player Rotation
