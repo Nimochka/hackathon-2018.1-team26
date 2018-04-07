@@ -27,4 +27,28 @@ public class bullet : MonoBehaviour {
 	void Update () {
 		
 	}
+	
+	public void RemoveForce() {
+
+		myRB.velocity = new Vector2(0,0);
+
+	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		
+		HitOnShootable(other);
+		
+	}
+
+	void HitOnShootable(Collider2D other)
+	{
+		if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+		{
+			RemoveForce();
+			Destroy(gameObject);
+		}
+		
+		
+	}
 }
