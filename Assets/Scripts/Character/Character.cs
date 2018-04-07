@@ -17,7 +17,7 @@ public abstract class Character : MonoBehaviour
     [SerializeField] LayerMask shootMask;
     [SerializeField] GameObject muzzleFlash;
     [SerializeField] GameObject muzzle;
-    [SerializeField] private GameObject bullet;
+    [SerializeField] protected GameObject bullet;
     public bool OnlinePlayer;
     
     float nextFire = 0f;

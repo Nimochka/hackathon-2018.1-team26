@@ -47,6 +47,14 @@ public class bullet : MonoBehaviour {
 		{
 			RemoveForce();
 			Destroy(gameObject);
+		} else if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+		{
+
+			PlayerHealth plHealt = other.gameObject.GetComponent<PlayerHealth>();
+			plHealt.addDamage(1f);
+			
+			RemoveForce();
+			Destroy(gameObject);
 		}
 		
 		
