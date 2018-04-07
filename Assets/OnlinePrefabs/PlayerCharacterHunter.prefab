@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114718207899289406}
   - component: {fileID: 114292855989857934}
   - component: {fileID: 114378721583939394}
+  - component: {fileID: 114754101213936994}
   m_Layer: 0
   m_Name: PlayerCharacterHunter
   m_TagString: Hunter
@@ -158,6 +159,22 @@ MonoBehaviour:
   IsDead: 0
   moveSpeed: 150
   poisonArrow: {fileID: 1555370124725650, guid: 2057b2894ac6af041aabbc82296a6d1e,
+    type: 2}
+--- !u!114 &114754101213936994
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1214378589530996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19db1b6cc469414c98c187b263b6713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullEnergy: 10
+  energyBar: {fileID: 114910357815575238, guid: 7f9f6d1cc2ecd1441ba531202238331d,
+    type: 2}
+  chargeScreen: {fileID: 114778367856342402, guid: 7f9f6d1cc2ecd1441ba531202238331d,
     type: 2}
 --- !u!212 &212859126482613464
 SpriteRenderer:
