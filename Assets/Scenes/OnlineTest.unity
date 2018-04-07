@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb21422b23d73843b1ef359ba788e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerHunter: {fileID: 1214378589530996, guid: 327752d716b893042802502075fa2f26,
+  PlayerHunter: {fileID: 1214378589530996, guid: 698412f5b4b68184faa15778b0ea0de6,
     type: 2}
   PlayerTank: {fileID: 1358624991409722, guid: 829c6c5c803204b4390dc6ba1a4dca97, type: 2}
   PlayerSupport: {fileID: 1718144210450140, guid: a886c376092ea7b47891360ba86d3db9,
@@ -397,6 +397,8 @@ MonoBehaviour:
   OnlineBoss: {fileID: 1274128205036876, guid: 662b4053c4331c1409054223047c216e, type: 2}
   HealthBar: {fileID: 1475694251}
   DamageScreen: {fileID: 984887112}
+  EnergyBar: {fileID: 2107306679}
+  EnergyScreen: {fileID: 2107306678}
 --- !u!4 &1750753576
 Transform:
   m_ObjectHideFlags: 0
@@ -510,13 +512,45 @@ Prefab:
     - target: {fileID: 224398147681012836, guid: 7f9f6d1cc2ecd1441ba531202238331d,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224398147681012836, guid: 7f9f6d1cc2ecd1441ba531202238331d,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224647537748496678, guid: 7f9f6d1cc2ecd1441ba531202238331d,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224647537748496678, guid: 7f9f6d1cc2ecd1441ba531202238331d,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224398147681012836, guid: 7f9f6d1cc2ecd1441ba531202238331d,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 224398147681012836, guid: 7f9f6d1cc2ecd1441ba531202238331d,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 7.48
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f9f6d1cc2ecd1441ba531202238331d, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &2107306678 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114778367856342402, guid: 7f9f6d1cc2ecd1441ba531202238331d,
+    type: 2}
+  m_PrefabInternal: {fileID: 2107306677}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &2107306679 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114910357815575238, guid: 7f9f6d1cc2ecd1441ba531202238331d,
+    type: 2}
+  m_PrefabInternal: {fileID: 2107306677}
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}

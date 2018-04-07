@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class Boss : Character
@@ -12,14 +7,15 @@ public class Boss : Character
     public float stunTime = 0;
     public GameObject dash;
     public bool destroyMode = false;
-    
+
+    private float regenTimer;
+
     protected override void Start()
     {
         base.Start();
         MoveSpeed = moveSpeed;
-        HealthPoints = 4;
-        BatteryCharge = 4;
-        
+        BatteryCharge = 10;
+
     }
 
     protected override void Update()
@@ -33,6 +29,12 @@ public class Boss : Character
         {
             stunTime -= Time.deltaTime;
         }
+        if (BatteryCharge < 10)
+        {
+            regenTimer += Time.deltaTime;
+            if (regenTimer > 3)
+                ++BatteryCharge;
+        }
     }
 
     protected override void OnMainSkillUse()
@@ -40,21 +42,6 @@ public class Boss : Character
         GameObject sDash = Instantiate(dash, transform.position, transform.rotation);
     }
     
-    
-
-    //protected override void FixedUpdate()
-    //{
-    //    if (stunTime <= 0)
-    //    {
-    //        base.FixedUpdate();
-    //    }
-    //    else
-    //    {
-    //        stunTime -= Time.deltaTime;
-    //    }
-    //}
-
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (destroyMode && other.gameObject.tag == "destroyItems")
