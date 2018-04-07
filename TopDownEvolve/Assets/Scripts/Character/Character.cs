@@ -33,6 +33,11 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Update()
     {
-        Move();
+        
+    }
+
+    private void FixedUpdate()
+    {
+        Move(); 
     }
 }
