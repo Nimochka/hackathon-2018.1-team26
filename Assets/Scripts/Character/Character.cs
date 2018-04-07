@@ -14,6 +14,13 @@ public abstract class Character : MonoBehaviour
 
     public float MoveSpeed { get; protected set; }
 
+    [SerializeField] LayerMask shootMask;
+    [SerializeField] GameObject muzzleFlash;
+    [SerializeField] GameObject muzzle;
+    [SerializeField] private float fireRate;
+    [SerializeField] private GameObject bullet;
+    
+    float nextFire = 0f;
 
     private Rigidbody2D rg;
 
@@ -64,6 +71,41 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Update()
     {
+        
+        if(Input.GetMouseButtonDown(0)){
+             Shoot();
+        }
+        
+    }
+    
+    protected virtual void Shoot ()
+    {
+        
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 400f, shootMask.value);
+		
+//        if(hit.collider != null){
+//            hit.collider.gameObject.SendMessage("Damaged", damage);
+//        }
+		
+        GameObject mf = Instantiate(muzzleFlash, muzzle.transform.position, transform.rotation) as GameObject;
+        mf.transform.parent = transform;
+
+        fireBullet();
+        
+        GameObject.Destroy(mf, 0.1f);
+        
+    }
+
+    protected virtual void fireBullet()
+    {
+        
+        if (Time.time > nextFire) {
+            nextFire = Time.time + fireRate;
+
+            GameObject sBullet = Instantiate(bullet, muzzle.transform.position, muzzle.transform.rotation) as GameObject;
+            
+            GameObject.Destroy(sBullet, 1f);
+        }
         
     }
 
