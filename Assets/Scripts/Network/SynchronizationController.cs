@@ -13,6 +13,8 @@ public class SynchronizationController : MonoBehaviour
     void Start()
     {
         SocketController.OnPlayerTick += ReceivePlayerTick;
+        SocketController.OnPlayerHealthChanged += ReceivePlayerHealthChange;
+        SocketController.OnPlayerShot += ReceivePlayerShot;
     }
 
 
@@ -21,6 +23,20 @@ public class SynchronizationController : MonoBehaviour
         if (!onlineCharacters.ContainsKey(tickData.SocketId))
             onlineCharacters.Add(tickData.SocketId, Spawner.SpawnOnlineCharacter());
         onlineCharacters[tickData.SocketId].ReceiveTick(tickData);
+    }
+
+
+    private void ReceivePlayerHealthChange(ChangeHealthData healthChangeData)
+    {
+
+    }
+
+
+    private void ReceivePlayerShot(ShotData shotData)
+    {
+        if (!onlineCharacters.ContainsKey(shotData.SocketId))
+            onlineCharacters.Add(shotData.SocketId, Spawner.SpawnOnlineCharacter());
+        onlineCharacters[shotData.SocketId].FireBullet(shotData);
     }
 
 }

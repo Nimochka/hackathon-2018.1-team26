@@ -8,6 +8,8 @@ public partial class SocketController
 
     public static event Action OnSocketOpen;
     public static event Action<TickData> OnPlayerTick;
+    public static event Action<ChangeHealthData> OnPlayerHealthChanged;
+    public static event Action<ShotData> OnPlayerShot;
 
 
     private void OnConnected(SocketIOEvent socketEvent)
@@ -21,10 +23,24 @@ public partial class SocketController
     }
 
 
-    private void OnTickReceived(SocketIOEvent socketEvent)
+    private void ResponsePlayerTick(SocketIOEvent socketEvent)
     {
         if (OnPlayerTick != null)
             OnPlayerTick(JsonUtility.FromJson<TickData>(socketEvent.data.ToString()));
+    }
+
+
+    private void ResponsePlayerChangeHealth(SocketIOEvent socketEvent)
+    {
+        if (OnPlayerHealthChanged != null)
+            OnPlayerHealthChanged(JsonUtility.FromJson<ChangeHealthData>(socketEvent.data.ToString()));
+    }
+
+
+    private void ResponsePlayerShot(SocketIOEvent socketEvent)
+    {
+        if (OnPlayerShot != null)
+            OnPlayerShot(JsonUtility.FromJson<ShotData>(socketEvent.data.ToString()));
     }
 
 }

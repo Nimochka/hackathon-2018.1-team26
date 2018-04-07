@@ -1,11 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-
-[Serializable]
-public class TickData
+[System.Serializable]
+public class ShotData
 {
-    public TickData(string socketId, Vector2 position, Vector3 rotation)
+    public ShotData(string socketId, Vector2 position, Vector3 rotation)
     {
         SocketId = socketId;
         Position = position;
