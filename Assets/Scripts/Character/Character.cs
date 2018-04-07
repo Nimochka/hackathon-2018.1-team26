@@ -105,6 +105,9 @@ public abstract class Character : MonoBehaviour
             GameObject sBullet = Instantiate(bullet, muzzle.transform.position, muzzle.transform.rotation) as GameObject;
             
             GameObject.Destroy(sBullet, 1f);
+
+            SocketController.RequestPlayerShot(new ShotData(SocketController.SocketId, muzzle.transform.position,
+                muzzle.transform.rotation.eulerAngles));
         }
         
     }

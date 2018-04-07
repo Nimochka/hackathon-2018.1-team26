@@ -5,6 +5,9 @@ public class OnlineCharacter : MonoBehaviour
     private TickData prevTickData, newTickData;
     private float lerpTimer;
 
+    public GameObject Bullet, Muzzle;
+    public GameObject MuzzleFlashPrefab;
+
 
     public void ReceiveTick(TickData tickData)
     {
@@ -32,6 +35,16 @@ public class OnlineCharacter : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(newTickData.Rotation);
             }
         }
+    }
+
+
+    public void FireBullet(ShotData shotData)
+    {
+        GameObject bullet = Instantiate(Bullet, shotData.Position, Quaternion.Euler(shotData.Rotation));
+        Destroy(bullet, 1f);
+
+        GameObject muzzleFlash = Instantiate(MuzzleFlashPrefab, Muzzle.transform.position, transform.rotation, transform);
+        Destroy(muzzleFlash, 0.1f);
     }
 
 }
