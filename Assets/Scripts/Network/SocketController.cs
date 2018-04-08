@@ -28,6 +28,7 @@ public partial class SocketController : MonoBehaviour
         socket.On("response:player:shield", ResponsePlayerShield);
         socket.On("response:player:assist", ResponsePlayerAssist);
         socket.On("response:boss:trap", ResponseBossTrap);
+        socket.On("response:player:teleport", ResponsePlayerTeleport);
 
         socket.On("connect:success", ResponsePlayerConnectSuccess);
         socket.On("connect:failure", ResponsePlayerConnectFail);
@@ -107,5 +108,11 @@ public partial class SocketController : MonoBehaviour
     public static void RequestBossTrap(TrapData trapData)
     {
         socket.Emit("request:boss:trap", new JSONObject(JsonUtility.ToJson(trapData)));
+    }
+
+
+    public static void RequestPlayerTeleport(TickData tickData)
+    {
+        socket.Emit("request:player:teleport", new JSONObject(JsonUtility.ToJson(tickData)));
     }
 }

@@ -11,7 +11,8 @@ namespace Skills
                 OnlineCharacter character = other.gameObject.GetComponent<OnlineCharacter>();
                 if (character != null && character.Character != "Boss")
                 {
-                    SocketController.RequstPlayerHealthChanged(new ChangeHealthData(character.SocketId, -20));
+                    if (!IsOnlineBullet)
+                        SocketController.RequstPlayerHealthChanged(new ChangeHealthData(character.SocketId, -20));
                     Destroy(gameObject);
                 }
             }

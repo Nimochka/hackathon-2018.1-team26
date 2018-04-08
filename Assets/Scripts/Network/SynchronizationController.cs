@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SocketIO;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class SynchronizationController : MonoBehaviour
         SocketController.OnShieldRaised += ReceivePlayerShield;
         SocketController.OnTankAssist += ReceivePlayerAssist;
         SocketController.OnTrapBoss += ReceiveBossTrap;
+        SocketController.OnTeleport += ReceivePlayerTeleport;
     }
 
 
@@ -98,5 +100,12 @@ public class SynchronizationController : MonoBehaviour
     {
         if (SocketController.SocketId == trapData.SocketId)
             PlayerCharacter.GetComponent<Boss>().stunTime = 5;
+    }
+
+
+    private void ReceivePlayerTeleport(TickData tickData)
+    {
+        if (tickData.SocketId == SocketController.SocketId)
+            PlayerCharacter.transform.position = tickData.Position;
     }
 }
