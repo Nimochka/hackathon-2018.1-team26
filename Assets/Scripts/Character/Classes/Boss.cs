@@ -73,6 +73,30 @@ public class Boss : Character
 
     }
 
+    protected override void FixedUpdate()
+    {
+        if (stunTime <= 0)
+            base.FixedUpdate();
+    }
+
+    protected override void Rotate()
+    {
+        if (!isAssisted)
+            base.Rotate();
+        else
+        {
+            if (Vector2.Distance(transform.position, assistTarget.position) < 190)
+            {
+                //transform.rotation = Quaternion.Lerp(transform.rotation,
+                //    Quaternion.LookRotation(assistTarget.position - transform.position), 20 * Time.deltaTime);
+                transform.up = assistTarget.position - transform.position;
+                assistTimer -= Time.deltaTime;
+                if (assistTimer <= 0)
+                    isAssisted = false;
+            }
+        }
+    }
+
     protected override void Shoot(GameObject bulletObject)
     {
         base.Shoot(bulletObject);
@@ -122,22 +146,6 @@ public class Boss : Character
                 muzzleRocket.transform.rotation.eulerAngles));
         }
 
-    }
-
-    private void LateUpdate()
-    {
-        if (isAssisted)
-        {
-            if (Vector2.Distance(transform.position, assistTarget.position) < 190)
-            {
-                //transform.rotation = Quaternion.Lerp(transform.rotation,
-                //    Quaternion.LookRotation(assistTarget.position - transform.position), 20 * Time.deltaTime);
-                transform.up = assistTarget.position - transform.position;
-                assistTimer -= Time.deltaTime;
-                if (assistTimer <= 0)
-                    isAssisted = false;
-            }
-        }
     }
 
     protected override void OnMainSkillUse()

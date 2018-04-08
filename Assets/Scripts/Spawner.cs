@@ -21,8 +21,7 @@ public class Spawner : MonoBehaviour
 
     public PlayerCharacter SpawnPlayerCharacter()
     {
-        //GameObject prefab = PlayerBoss;
-        GameObject prefab = PlayerTank;
+        GameObject prefab = PlayerBoss;
         if (SocketController.Character == "Tank")
             prefab = PlayerTank;
         else if (SocketController.Character == "Support")

@@ -5,14 +5,13 @@ namespace Skills
     public class Trap : MonoBehaviour
     {
         public float timeLeft = 0.3f;
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             GameObject otherGo = other.gameObject;
             if (otherGo.tag == "Boss")
             {
-//                otherGo.GetComponent<Boss>().stunTime = 5.0f;
+                SocketController.RequestBossTrap(new TrapData(otherGo.GetComponent<OnlineCharacter>().SocketId));
                 GameObject.Destroy(gameObject);
-                //TODO отправка сокета
             }
         }
 
