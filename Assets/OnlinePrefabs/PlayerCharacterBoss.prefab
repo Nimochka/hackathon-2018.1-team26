@@ -465,9 +465,10 @@ MonoBehaviour:
     type: 2}
   muzzleRocket: {fileID: 1900770236266588}
   asourceStep: {fileID: 82386399661346164}
-  asourceShot: {fileID: 82386399661346164}
+  asourceShot: {fileID: 82499814617386520}
   stepSound: {fileID: 8300000, guid: cba4066c4decde34e9a1079ca94a5d78, type: 3}
   standartShot: {fileID: 8300000, guid: a7fc178f163475c48b832263b5cfe48e, type: 3}
+  missle: {fileID: 8300000, guid: 24642e427337c464db89cb058c2502b1, type: 3}
 --- !u!212 &212750856728841520
 SpriteRenderer:
   m_ObjectHideFlags: 1

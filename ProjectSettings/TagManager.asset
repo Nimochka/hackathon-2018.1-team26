@@ -8,6 +8,7 @@ TagManager:
   - Hunter
   - Support
   - Tank
+  - wall
   layers:
   - Default
   - TransparentFX
