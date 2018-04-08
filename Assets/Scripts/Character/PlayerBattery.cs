@@ -26,6 +26,7 @@ public class PlayerBattery : MonoBehaviour {
 	private List<OnlineCharacter> onlinePlayersList;
 
 	private bool PlayersTogether;
+	private bool startChargedBoss;
 	
 	// Use this for initialization
 	void Start () {
@@ -41,6 +42,8 @@ public class PlayerBattery : MonoBehaviour {
 		SyncController = GameObject.Find("SynchronizationController").GetComponent<SynchronizationController>();
 
 		PlayersTogether = false;
+
+		startChargedBoss = false;
 
 
 	}
@@ -69,6 +72,18 @@ public class PlayerBattery : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (gameObject.tag == "Boss")
+		{
+			if (!startChargedBoss)
+			{
+				StartCoroutine(ChargeBoss());
+				addCharge(1);
+			}
+				
+			
+			return;
+		}
 		
 		onlinePlayersList = SyncController.OnlineCharacters.Where(x => x.Value.Character != "Boss")
 			.Select(x => x.Value)
@@ -108,6 +123,15 @@ public class PlayerBattery : MonoBehaviour {
 		
 	}
 
+	IEnumerator ChargeBoss()
+	{
+
+		startChargedBoss = true;
+		yield return new WaitForSeconds(3);
+		startChargedBoss = false;
+
+	}
+	
 	IEnumerator ChargePlayer()
 	{
 

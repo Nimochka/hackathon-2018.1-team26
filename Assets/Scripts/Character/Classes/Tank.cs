@@ -14,10 +14,13 @@ public class Tank : Character
     public GameObject assist;
     public bool mainSkillLock = false;
 
-    private PlayerBattery plBattery;
+    //private PlayerBattery plBattery;
 
     private bool assistInProgress;
 
+
+    public AudioSource asourceShot; 			//The players AudioSource that sounds will be played through
+    public AudioClip standartShot;
 
     protected override void Start()
     {
@@ -34,6 +37,10 @@ public class Tank : Character
         if (!mainSkillLock)
         {
             base.Shoot(bulletObject);
+            
+            asourceShot.volume = .3f;
+            asourceShot.PlayOneShot(standartShot);
+            
         }
     }
 
