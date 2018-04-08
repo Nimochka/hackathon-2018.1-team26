@@ -459,54 +459,6 @@ MonoBehaviour:
   charVelocity: {x: 0, y: 0}
   mPos: {x: 0, y: 0, z: 0}
   worldLock: {x: 0, y: 0}
---- !u!1001 &1321808917
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4718137666402236, guid: 820a231f2bfff7f49ad5e7acaeeae8b5, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4718137666402236, guid: 820a231f2bfff7f49ad5e7acaeeae8b5, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4718137666402236, guid: 820a231f2bfff7f49ad5e7acaeeae8b5, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4718137666402236, guid: 820a231f2bfff7f49ad5e7acaeeae8b5, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4718137666402236, guid: 820a231f2bfff7f49ad5e7acaeeae8b5, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4718137666402236, guid: 820a231f2bfff7f49ad5e7acaeeae8b5, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4718137666402236, guid: 820a231f2bfff7f49ad5e7acaeeae8b5, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4718137666402236, guid: 820a231f2bfff7f49ad5e7acaeeae8b5, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114842401806927662, guid: 820a231f2bfff7f49ad5e7acaeeae8b5,
-        type: 2}
-      propertyPath: bullet2
-      value: 
-      objectReference: {fileID: 1955535305912116, guid: 4643fec7beb3c3e4eb192a6e5381c87d,
-        type: 2}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 820a231f2bfff7f49ad5e7acaeeae8b5, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1410541171
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,7 +643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb21422b23d73843b1ef359ba788e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerHunter: {fileID: 1214378589530996, guid: 327752d716b893042802502075fa2f26,
+  PlayerHunter: {fileID: 1214378589530996, guid: 698412f5b4b68184faa15778b0ea0de6,
     type: 2}
   PlayerTank: {fileID: 1915966055194368, guid: d1db726c6b999784cbbb6bf5e123a73f, type: 2}
   PlayerSupport: {fileID: 1718144210450140, guid: a886c376092ea7b47891360ba86d3db9,

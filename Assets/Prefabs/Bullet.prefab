@@ -101,6 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rocketSpeed: 500
   bulletDirection: {x: 0, y: 0}
+  IsOnlineBullet: 0
+  Shooter: {fileID: 0}
+  Damage: 1
 --- !u!212 &212773132174810314
 SpriteRenderer:
   m_ObjectHideFlags: 1

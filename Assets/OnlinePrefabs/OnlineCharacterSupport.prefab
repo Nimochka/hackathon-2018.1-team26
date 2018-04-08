@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 58988531422945420}
   - component: {fileID: 50805593539719806}
   - component: {fileID: 114610568530729342}
+  - component: {fileID: 82253211717463380}
   m_Layer: 8
   m_Name: OnlineCharacterSupport
   m_TagString: Support
@@ -107,6 +108,86 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 9
+--- !u!82 &82253211717463380
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258038344682058}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114610568530729342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,6 +205,11 @@ MonoBehaviour:
   Muzzle: {fileID: 1191296762953144}
   MuzzleFlashPrefab: {fileID: 148364, guid: fe0b9bb43d8c694438303177acdfb462, type: 2}
   SpriteRenderer: {fileID: 212821932850556412}
+  Shield: {fileID: 0}
+  stepSound: {fileID: 0}
+  shotSound: {fileID: 8300000, guid: 2d638d9a659a1e14dabba508fc87f3f6, type: 3}
+  asourceStep: {fileID: 0}
+  asourceShoot: {fileID: 82253211717463380}
 --- !u!212 &212821932850556412
 SpriteRenderer:
   m_ObjectHideFlags: 1

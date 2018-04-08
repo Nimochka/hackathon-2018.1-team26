@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114668396129926300}
   - component: {fileID: 114489777053790284}
   - component: {fileID: 114544204725737268}
+  - component: {fileID: 82985774374278232}
   m_Layer: 8
   m_Name: PlayerCharacterTank
   m_TagString: Tank
@@ -110,6 +111,86 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 9
+--- !u!82 &82985774374278232
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1915966055194368}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114489777053790284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,13 +251,17 @@ MonoBehaviour:
     m_Bits: 256
   muzzleFlash: {fileID: 148364, guid: fe0b9bb43d8c694438303177acdfb462, type: 2}
   muzzle: {fileID: 1651708972947404}
+  muzzle2: {fileID: 0}
   bullet: {fileID: 1955535305912116, guid: 4643fec7beb3c3e4eb192a6e5381c87d, type: 2}
+  bullet2: {fileID: 0}
   OnlinePlayer: 0
   IsDead: 0
   moveSpeed: 150
   shield: {fileID: 1208480177690618, guid: 185479ca8f131da4b97c3cd450c8d529, type: 2}
   assist: {fileID: 1863895680301644, guid: 65159ca3e5e728146ac92fea9c56fd96, type: 2}
   mainSkillLock: 0
+  asourceShot: {fileID: 82985774374278232}
+  standartShot: {fileID: 8300000, guid: 2d638d9a659a1e14dabba508fc87f3f6, type: 3}
 --- !u!212 &212898597399185090
 SpriteRenderer:
   m_ObjectHideFlags: 1
