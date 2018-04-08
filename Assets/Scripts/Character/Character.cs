@@ -185,8 +185,8 @@ public abstract class Character : MonoBehaviour
 
             Destroy(sBullet.gameObject, 1f);
 
-            SocketController.RequestPlayerShot(new ShotData(SocketController.SocketId, muzzle.transform.position,
-                muzzle.transform.rotation.eulerAngles));
+            SocketController.RequestPlayerShot(new ShotData(SocketController.SocketId, muzzle2.transform.position,
+                muzzle2.transform.rotation.eulerAngles, bulletObject.name));
         }
 
     }
@@ -198,15 +198,15 @@ public abstract class Character : MonoBehaviour
         {
             nextFire = Time.time;
 
-            bullet sBullet = Instantiate(bulletObject, muzzle.transform.position, muzzle.transform.rotation).GetComponent<bullet>();
+            bullet sBullet = Instantiate(bulletObject, muzzle.transform.position, muzzle.transform.rotation)
+                .GetComponent<bullet>();
             sBullet.Shooter = gameObject;
             sBullet.Damage = ShotDamage;
 
 
             Destroy(sBullet.gameObject, 1f);
-
             SocketController.RequestPlayerShot(new ShotData(SocketController.SocketId, muzzle.transform.position,
-                muzzle.transform.rotation.eulerAngles));
+                muzzle.transform.rotation.eulerAngles, bulletObject.name));
         }
 
     }
@@ -239,19 +239,22 @@ public abstract class Character : MonoBehaviour
 
         foreach (OnlineCharacter onPlayer in onlinePlayersList)
         {
-            Teleport(onPlayer.gameObject);
+            Teleport(onPlayer);
             StartCoroutine(startSummon());
         }
 
     }
 
-    private void Teleport(GameObject teleportGameObj)
+    private void Teleport(OnlineCharacter onlineCharacter)
     {
 
         if (plBattery.currentEnergy < 2)
             return;
 
-        teleportGameObj.transform.position = new Vector3(transform.position.x, transform.position.y);
+        SocketController.RequestPlayerTeleport(new TickData(onlineCharacter.SocketId, transform.position,
+            onlineCharacter.transform.rotation.eulerAngles));
+
+        //onlineCharacter.transform.position = new Vector3(transform.position.x, transform.position.y);
         plBattery.discharge(2);
     }
 

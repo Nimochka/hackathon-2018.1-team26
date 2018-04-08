@@ -142,8 +142,9 @@ public class Boss : Character
 
             Destroy(sBossRocket.gameObject, 1f);
 
+            Debug.Log(bossRocket.name);
             SocketController.RequestPlayerShot(new ShotData(SocketController.SocketId, muzzleRocket.transform.position,
-                muzzleRocket.transform.rotation.eulerAngles));
+                muzzleRocket.transform.rotation.eulerAngles, "Rocket"));
         }
 
     }

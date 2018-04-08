@@ -9,7 +9,7 @@ namespace Skills
             if (other.gameObject != Shooter)
             {
                 GameObject otherGo = other.gameObject;
-                if (otherGo.tag == "Boss")
+                if (!IsOnlineBullet && otherGo.tag == "Boss")
                     SocketController.RequestPlayerPoison(
                         new PoisonData(otherGo.GetComponent<OnlineCharacter>().SocketId));
                 Destroy(gameObject);

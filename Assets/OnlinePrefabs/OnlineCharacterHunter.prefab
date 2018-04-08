@@ -202,6 +202,8 @@ MonoBehaviour:
   Character: Hunter
   SocketId: 
   Bullet: {fileID: 1955535305912116, guid: 4643fec7beb3c3e4eb192a6e5381c87d, type: 2}
+  Rocket: {fileID: 1547345970207722, guid: 23e89bb393406ae49adebab8d7f703df, type: 2}
+  Heal: {fileID: 1752227834767184, guid: 29d3f6945d89d3449a7464bfdb2dfa4e, type: 2}
   Muzzle: {fileID: 1930367681736788}
   MuzzleFlashPrefab: {fileID: 148364, guid: fe0b9bb43d8c694438303177acdfb462, type: 2}
   SpriteRenderer: {fileID: 212823842252737992}

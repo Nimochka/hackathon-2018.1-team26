@@ -10,11 +10,11 @@ public class OnlineCharacter : MonoBehaviour
     private TickData prevTickData, newTickData;
     private float lerpTimer;
 
-    public GameObject Bullet, Muzzle;
+    public GameObject Bullet, Rocket, Heal, Muzzle;
     public GameObject MuzzleFlashPrefab;
 
     public SpriteRenderer SpriteRenderer;
-    
+
     Rigidbody2D rg;
     public GameObject Shield;
 
@@ -22,10 +22,10 @@ public class OnlineCharacter : MonoBehaviour
     private bool playedStepSound;
     public AudioClip stepSound;
     public AudioClip shotSound;
-    
-    public AudioSource asourceStep; 
-    public AudioSource asourceShoot; 
-  
+
+    public AudioSource asourceStep;
+    public AudioSource asourceShoot;
+
     public void ReceiveTick(TickData tickData)
     {
         prevTickData = newTickData;
@@ -79,15 +79,31 @@ public class OnlineCharacter : MonoBehaviour
         yield return new WaitForSeconds(0.494f);
         playedStepSound = false;
     }
-    
+
     public void FireBullet(ShotData shotData)
     {
-        bullet bullet = Instantiate(Bullet, shotData.Position, Quaternion.Euler(shotData.Rotation)).GetComponent<bullet>();
-        bullet.IsOnlineBullet = true;
-        bullet.Shooter = gameObject;
-        Destroy(bullet, 1f);
 
-        GameObject muzzleFlash = Instantiate(MuzzleFlashPrefab, Muzzle.transform.position, transform.rotation, transform);
+        if (shotData.ProjectileName == "Rocket")
+        {
+            GameObject prefab = Rocket;
+            rocket rocket = Instantiate(prefab, shotData.Position, Quaternion.Euler(shotData.Rotation))
+                .GetComponent<rocket>();
+            rocket.IsOnlineBullet = true;
+            rocket.Shooter = gameObject;
+            Destroy(rocket.gameObject, 1f);
+        }
+        else
+        {
+            GameObject prefab = Bullet;
+            if (shotData.ProjectileName == "Health" || shotData.ProjectileName == "PoisonArrow")
+                prefab = Heal;
+            bullet bullet = Instantiate(prefab, shotData.Position, Quaternion.Euler(shotData.Rotation)).GetComponent<bullet>();
+            bullet.IsOnlineBullet = true;
+            bullet.Shooter = gameObject;
+            Destroy(bullet.gameObject, 1f);
+        }
+
+        GameObject muzzleFlash = Instantiate(MuzzleFlashPrefab, shotData.Position, transform.rotation, transform);
         Destroy(muzzleFlash, 0.1f);
 
         if (Character == "Boss")
@@ -98,9 +114,9 @@ public class OnlineCharacter : MonoBehaviour
         {
             asourceShoot.volume = .3f;
         }
-        
+
         asourceShoot.PlayOneShot(shotSound);
-        
+
     }
 
 

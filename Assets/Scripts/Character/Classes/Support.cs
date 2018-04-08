@@ -58,16 +58,16 @@ public class Support : Character
     protected override void OnSecondarySkillUse()
     {
         
-        if (plBattery.currentEnergy < 4 || trapInProgress)
-            return;
+        //if (plBattery.currentEnergy < 4 || trapInProgress)
+        //    return;
         
-        Vector3 pos = transform.position;
-        pos.x += transform.up.x * 20;
-        pos.y += transform.up.y * 20;
-        GameObject sBullet = Instantiate(trap, pos, transform.rotation) as GameObject;
-        sBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.up.x * 90, transform.up.y * 90);
-        StartCoroutine(startTrap());
-        plBattery.discharge(4);
+        //Vector3 pos = transform.position;
+        //pos.x += transform.up.x * 20;
+        //pos.y += transform.up.y * 20;
+        //GameObject sBullet = Instantiate(trap, pos, transform.rotation) as GameObject;
+        //sBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.up.x * 90, transform.up.y * 90);
+        //StartCoroutine(startTrap());
+        //plBattery.discharge(4);
 
     }
 
