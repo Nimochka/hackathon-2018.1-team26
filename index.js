@@ -28,6 +28,12 @@ io.on('connection', socket => {
     socket.on('request:player:changehealth', data => socket.broadcast.emit('response:player:changehealth', data));
     socket.on('request:player:shot', data => socket.broadcast.emit('response:player:shot', data));
     socket.on('request:player:die', data => socket.broadcast.emit('response:player:die', data));
+    socket.on('request:player:poison', data => socket.broadcast.emit('response:player:poison', data));
+    socket.on('request:player:shield', data => socket.broadcast.emit('response:player:shield', data));
+    socket.on('request:player:assist', data => socket.broadcast.emit('response:player:assist', data));
+    socket.on('request:boss:trap', data => socket.broadcast.emit('response:boss:trap', data));
+    socket.on('request:player:teleport', data => socket.broadcast.emit('response:player:teleport', data));
+
 
     socket.on('request:character:select', data => pickCharacter(data));
 
