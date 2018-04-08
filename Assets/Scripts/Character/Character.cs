@@ -22,17 +22,20 @@ public abstract class Character : MonoBehaviour
     [SerializeField] LayerMask shootMask;
     [SerializeField] GameObject muzzleFlash;
     [SerializeField] GameObject muzzle;
+    [SerializeField] GameObject muzzle2;
     [SerializeField] protected GameObject bullet;
+    [SerializeField] protected GameObject bullet2;
     public bool OnlinePlayer;
     public bool IsDead; 
     
     float nextFire = 0f;
+    float nextFire2 = 0f;
 
-    private Rigidbody2D rg;
+    protected Rigidbody2D rg;
 
     private Aim AimController;
 
-    private PlayerBattery plBattery;
+    protected PlayerBattery plBattery;
 
     private SynchronizationController syncController;
     private List<OnlineCharacter> onlinePlayersList;
@@ -148,6 +151,16 @@ public abstract class Character : MonoBehaviour
     protected virtual void Shoot(GameObject bulletObject)
     {
 
+        if (gameObject.tag == "Boss")
+        {
+            GameObject mf2 = Instantiate(muzzleFlash, muzzle2.transform.position, transform.rotation) as GameObject;
+            mf2.transform.parent = transform;
+
+            fireBullet2(bullet2);
+
+            GameObject.Destroy(mf2, 0.1f);
+        }
+        
         GameObject mf = Instantiate(muzzleFlash, muzzle.transform.position, transform.rotation) as GameObject;
         mf.transform.parent = transform;
 
@@ -157,6 +170,25 @@ public abstract class Character : MonoBehaviour
 
     }
 
+    protected virtual void fireBullet2(GameObject bulletObject)
+    {
+
+        if (Time.time > nextFire2)
+        {
+            nextFire2 = Time.time;
+
+            bullet sBullet = Instantiate(bulletObject, muzzle2.transform.position, muzzle2.transform.rotation).GetComponent<bullet>();
+            sBullet.Shooter = gameObject;
+            sBullet.Damage = ShotDamage;
+
+            Destroy(sBullet.gameObject, 1f);
+
+            SocketController.RequestPlayerShot(new ShotData(SocketController.SocketId, muzzle.transform.position,
+                muzzle.transform.rotation.eulerAngles));
+        }
+
+    }
+    
     protected virtual void fireBullet(GameObject bulletObject)
     {
 
@@ -169,7 +201,7 @@ public abstract class Character : MonoBehaviour
             sBullet.Damage = ShotDamage;
 
 
-            GameObject.Destroy(sBullet, 1f);
+            Destroy(sBullet.gameObject, 1f);
 
             SocketController.RequestPlayerShot(new ShotData(SocketController.SocketId, muzzle.transform.position,
                 muzzle.transform.rotation.eulerAngles));

@@ -12,9 +12,12 @@ public class Support : Character
     public GameObject health;
     public GameObject trap;
     
-    private PlayerBattery plBattery;
+    //private PlayerBattery plBattery;
 
     private bool trapInProgress;
+    
+    public AudioSource asourceShot; 			//The players AudioSource that sounds will be played through
+    public AudioClip standartShot;
     
     protected override void Start()
     {
@@ -38,6 +41,15 @@ public class Support : Character
         
         Shoot(health);
         plBattery.discharge(3);
+    }
+
+    protected override void Shoot(GameObject bulletObject)
+    {
+        base.Shoot(bulletObject);
+        
+        asourceShot.volume = .3f;
+        asourceShot.PlayOneShot(standartShot);
+        
     }
 
     /**

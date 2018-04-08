@@ -1,4 +1,5 @@
-﻿using Skills;
+using System.Collections;
+using Skills;
 using UnityEngine;
 
 public class OnlineCharacter : MonoBehaviour
@@ -13,9 +14,18 @@ public class OnlineCharacter : MonoBehaviour
     public GameObject MuzzleFlashPrefab;
 
     public SpriteRenderer SpriteRenderer;
+    
+    Rigidbody2D rg;
     public GameObject Shield;
 
 
+    private bool playedStepSound;
+    public AudioClip stepSound;
+    public AudioClip shotSound;
+    
+    public AudioSource asourceStep; 
+    public AudioSource asourceShoot; 
+  
     public void ReceiveTick(TickData tickData)
     {
         prevTickData = newTickData;
@@ -23,6 +33,11 @@ public class OnlineCharacter : MonoBehaviour
         lerpTimer = 0;
     }
 
+    private void Start()
+    {
+        rg = GetComponent<Rigidbody2D>();
+        playedStepSound = false;
+    }
 
     void Update()
     {
@@ -41,10 +56,30 @@ public class OnlineCharacter : MonoBehaviour
                 transform.position = newTickData.Position;
                 transform.rotation = Quaternion.LookRotation(newTickData.Rotation);
             }
+
+            if (rg.velocity != new Vector2(0, 0))
+            {
+                if (Character == "Boss")
+                {
+                    if (!playedStepSound)
+                    {
+                        StartCoroutine(playStepSound());
+                        asourceStep.PlayOneShot(stepSound);
+                    }
+                }
+            }
         }
     }
 
 
+    IEnumerator playStepSound()
+    {
+        asourceStep.volume = 0.2f;
+        playedStepSound = true;
+        yield return new WaitForSeconds(0.494f);
+        playedStepSound = false;
+    }
+    
     public void FireBullet(ShotData shotData)
     {
         bullet bullet = Instantiate(Bullet, shotData.Position, Quaternion.Euler(shotData.Rotation)).GetComponent<bullet>();
@@ -54,6 +89,18 @@ public class OnlineCharacter : MonoBehaviour
 
         GameObject muzzleFlash = Instantiate(MuzzleFlashPrefab, Muzzle.transform.position, transform.rotation, transform);
         Destroy(muzzleFlash, 0.1f);
+
+        if (Character == "Boss")
+        {
+            asourceShoot.volume = 3;
+        }
+        else
+        {
+            asourceShoot.volume = .3f;
+        }
+        
+        asourceShoot.PlayOneShot(shotSound);
+        
     }
 
 
