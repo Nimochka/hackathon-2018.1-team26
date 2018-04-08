@@ -2,14 +2,17 @@
 
 namespace Skills
 {
-    public class PoisonArrow:bullet
+    public class PoisonArrow : bullet
     {
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            GameObject otherGo = other.gameObject;
-            if (otherGo.tag == "Boss")
+            if (other.gameObject != Shooter)
             {
-                Debug.Log(otherGo.GetComponent<Boss>().HealthPoints);
+                GameObject otherGo = other.gameObject;
+                if (otherGo.tag == "Boss")
+                    SocketController.RequestPlayerPoison(
+                        new PoisonData(otherGo.GetComponent<OnlineCharacter>().SocketId));
+                Destroy(gameObject);
             }
         }
     }

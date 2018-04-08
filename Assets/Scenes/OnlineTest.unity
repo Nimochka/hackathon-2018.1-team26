@@ -385,7 +385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerHunter: {fileID: 1214378589530996, guid: 698412f5b4b68184faa15778b0ea0de6,
     type: 2}
-  PlayerTank: {fileID: 1358624991409722, guid: 829c6c5c803204b4390dc6ba1a4dca97, type: 2}
+  PlayerTank: {fileID: 1915966055194368, guid: d1db726c6b999784cbbb6bf5e123a73f, type: 2}
   PlayerSupport: {fileID: 1718144210450140, guid: a886c376092ea7b47891360ba86d3db9,
     type: 2}
   PlayerBoss: {fileID: 1038340388486534, guid: 820a231f2bfff7f49ad5e7acaeeae8b5, type: 2}

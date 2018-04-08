@@ -23,6 +23,13 @@ public class PlayerHealth : MonoBehaviour
     public SpriteRenderer SpriteRenderer;
 
 
+    private bool isPoisoned;
+    private int poisonIterations;
+    private int poisonDamage;
+    private float poisonTimer;
+
+
+
     // Use this for initialization
     void Start()
     {
@@ -70,6 +77,18 @@ public class PlayerHealth : MonoBehaviour
             damageScreen.color = Color.Lerp(damageScreen.color, Color.clear, smoothColor * Time.deltaTime);
         }
 
+
+        if (isPoisoned)
+        {
+            poisonTimer += Time.deltaTime;
+            if (poisonTimer >= 1)
+            {
+                addDamage(poisonDamage);
+                poisonTimer = 0;
+                if (--poisonIterations == 0)
+                    isPoisoned = false;
+            }
+        }
     }
 
     public void makeDead()
@@ -82,5 +101,13 @@ public class PlayerHealth : MonoBehaviour
         SpriteRenderer.color = Color.red;
 
         SocketController.RequestPlayerDie(new DieData(SocketController.SocketId));
+    }
+
+
+    public void Poison()
+    {
+        isPoisoned = true;
+        poisonDamage = 10;
+        poisonIterations = 10;
     }
 }

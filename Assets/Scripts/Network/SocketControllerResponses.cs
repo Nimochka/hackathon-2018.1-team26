@@ -14,6 +14,9 @@ public partial class SocketController
     public static event Action<Pick> OnGetPick;
     public static event Action OnGameStarted;
     public static event Action<DieData> OnPlayerDied;
+    public static event Action<PoisonData> OnPlayerPoisoned;
+    public static event Action<ShieldData> OnShieldRaised;
+
 
     public static event Action OnPlayerConnectSuccess, OnPlayerConnectFail;
 
@@ -82,5 +85,19 @@ public partial class SocketController
     {
         if (OnPlayerDied != null)
             OnPlayerDied(JsonUtility.FromJson<DieData>(socketEvent.data.ToString()));
+    }
+
+
+    private void ResponsePlayerPoisoned(SocketIOEvent socketEvent)
+    {
+        if (OnPlayerPoisoned != null)
+            OnPlayerPoisoned(JsonUtility.FromJson<PoisonData>(socketEvent.data.ToString()));
+    }
+
+
+    private void ResponsePlayerShield(SocketIOEvent socketEvent)
+    {
+        if (OnShieldRaised != null)
+            OnShieldRaised(JsonUtility.FromJson<ShieldData>(socketEvent.data.ToString()));
     }
 }

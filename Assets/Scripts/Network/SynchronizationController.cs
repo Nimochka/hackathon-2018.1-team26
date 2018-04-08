@@ -1,5 +1,6 @@
 ﻿﻿﻿using System.Collections.Generic;
-using UnityEngine;
+  using SocketIO;
+  using UnityEngine;
 
 
 public class SynchronizationController : MonoBehaviour
@@ -18,6 +19,8 @@ public class SynchronizationController : MonoBehaviour
         SocketController.OnPlayerHealthChanged += ReceivePlayerHealthChange;
         SocketController.OnPlayerShot += ReceivePlayerShot;
         SocketController.OnPlayerDied += ReceivePlayerDied;
+        SocketController.OnPlayerPoisoned += ReceivePlayerPoison;
+        SocketController.OnShieldRaised += ReceivePlayerShield;
     }
 
 
@@ -60,6 +63,19 @@ public class SynchronizationController : MonoBehaviour
     private void ReceivePlayerDied(DieData dieData)
     {
         OnlineCharacters[dieData.SocketId].Die();
+    }
+
+
+    private void ReceivePlayerPoison(PoisonData poisonData)
+    {
+        if (SocketController.SocketId == poisonData.SocketId)
+            PlayerCharacter.GetComponent<PlayerHealth>().Poison();
+    }
+
+
+    private void ReceivePlayerShield(ShieldData shieldData)
+    {
+        OnlineCharacters[shieldData.SocketId].RaiseShield();
     }
 
 }

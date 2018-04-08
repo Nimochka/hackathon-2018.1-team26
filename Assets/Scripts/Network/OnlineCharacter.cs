@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Skills;
+using UnityEngine;
 
 public class OnlineCharacter : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class OnlineCharacter : MonoBehaviour
     public GameObject MuzzleFlashPrefab;
 
     public SpriteRenderer SpriteRenderer;
+    public GameObject Shield;
 
 
     public void ReceiveTick(TickData tickData)
@@ -59,6 +61,16 @@ public class OnlineCharacter : MonoBehaviour
     {
         GetComponent<Collider2D>().enabled = false;
         SpriteRenderer.color = Color.red;
+    }
+
+
+    public void RaiseShield()
+    {
+        Vector3 pos = transform.position;
+        pos.x += transform.up.x * 20;
+        pos.y += transform.up.y * 20;
+        Shield sShield = Instantiate(Shield, pos, transform.rotation).GetComponent<Shield>();
+        sShield.Tank = gameObject;
     }
 
 }

@@ -124,6 +124,7 @@ MonoBehaviour:
   Muzzle: {fileID: 1980712607155182}
   MuzzleFlashPrefab: {fileID: 148364, guid: fe0b9bb43d8c694438303177acdfb462, type: 2}
   SpriteRenderer: {fileID: 212560807137529500}
+  Shield: {fileID: 1208480177690618, guid: 185479ca8f131da4b97c3cd450c8d529, type: 2}
 --- !u!212 &212560807137529500
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using System.Text;
+using Skills;
 using UnityEngine;
 
 
@@ -42,22 +43,25 @@ public class Tank : Character
 
             if (plBattery.currentEnergy < 4)
                 return;
-            
+
             Vector3 pos = transform.position;
             pos.x += transform.up.x * 20;
             pos.y += transform.up.y * 20;
-            GameObject sShield = Instantiate(shield, pos, transform.rotation) as GameObject;
+            Shield sShield = Instantiate(shield, pos, transform.rotation).GetComponent<Shield>();
+            sShield.Tank = gameObject;
             mainSkillLock = true;
             plBattery.discharge(4);
+
+            SocketController.RequestPlayerShield(new ShieldData(SocketController.SocketId));
         }
     }
 
     protected override void OnSecondarySkillUse()
     {
-        
+
         if (plBattery.currentEnergy < 4)
             return;
-        
+
         if (!assistInProgress)
         {
             GameObject sAssist = Instantiate(assist, transform.position, transform.rotation);
@@ -68,10 +72,10 @@ public class Tank : Character
 
     IEnumerator startAssist()
     {
-        
+
         assistInProgress = true;
         yield return new WaitForSeconds(10);
         assistInProgress = false;
-        
+
     }
 }
