@@ -24,8 +24,8 @@ public abstract class Character : MonoBehaviour
     [SerializeField] GameObject muzzle;
     [SerializeField] protected GameObject bullet;
     public bool OnlinePlayer;
-    public bool IsDead; 
-    
+    public bool IsDead;
+
     float nextFire = 0f;
 
     private Rigidbody2D rg;
@@ -34,18 +34,18 @@ public abstract class Character : MonoBehaviour
 
     private PlayerBattery plBattery;
 
-    private SynchronizationController syncController;
+    protected SynchronizationController syncController;
     private List<OnlineCharacter> onlinePlayersList;
 
     private bool summonInProgress;
-    
+
     protected virtual void Start()
     {
         rg = GetComponent<Rigidbody2D>();
         AimController = GameObject.Find("Map").GetComponent<Aim>();
 
         plBattery = GetComponent<PlayerBattery>();
-        syncController = GameObject.Find("SynchronizationController").GetComponent<SynchronizationController>();
+        syncController = FindObjectOfType<SynchronizationController>();
 
         summonInProgress = false;
 
@@ -181,23 +181,23 @@ public abstract class Character : MonoBehaviour
     {
         if (!OnlinePlayer && !IsDead)
         {
-            Move(); 
+            Move();
         }
     }
 
     protected virtual void OnMainSkillUse()
     {
-        
+
     }
 
-    protected virtual void OnSecondarySkillUse(){}
+    protected virtual void OnSecondarySkillUse() { }
 
     protected virtual void OnThirdSkillUse()
     {
 
         if (summonInProgress)
             return;
-        
+
         onlinePlayersList = syncController.OnlineCharacters.Where(x => x.Value.Character != "Boss")
             .Select(x => x.Value)
             .ToList();
@@ -207,15 +207,15 @@ public abstract class Character : MonoBehaviour
             Teleport(onPlayer.gameObject);
             StartCoroutine(startSummon());
         }
-       
+
     }
-    
+
     private void Teleport(GameObject teleportGameObj)
     {
 
         if (plBattery.currentEnergy < 2)
             return;
-        
+
         teleportGameObj.transform.position = new Vector3(transform.position.x, transform.position.y);
         plBattery.discharge(2);
     }

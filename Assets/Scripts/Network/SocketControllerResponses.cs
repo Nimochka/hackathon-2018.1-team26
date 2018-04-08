@@ -16,6 +16,7 @@ public partial class SocketController
     public static event Action<DieData> OnPlayerDied;
     public static event Action<PoisonData> OnPlayerPoisoned;
     public static event Action<ShieldData> OnShieldRaised;
+    public static event Action<AssistData> OnTankAssist; 
 
 
     public static event Action OnPlayerConnectSuccess, OnPlayerConnectFail;
@@ -99,5 +100,12 @@ public partial class SocketController
     {
         if (OnShieldRaised != null)
             OnShieldRaised(JsonUtility.FromJson<ShieldData>(socketEvent.data.ToString()));
+    }
+
+
+    private void ResponsePlayerAssist(SocketIOEvent socketEvent)
+    {
+        if (OnTankAssist != null)
+            OnTankAssist(JsonUtility.FromJson<AssistData>(socketEvent.data.ToString()));
     }
 }

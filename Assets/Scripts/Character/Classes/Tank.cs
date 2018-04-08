@@ -18,6 +18,7 @@ public class Tank : Character
 
     private bool assistInProgress;
 
+
     protected override void Start()
     {
         base.Start();
@@ -64,8 +65,11 @@ public class Tank : Character
 
         if (!assistInProgress)
         {
-            GameObject sAssist = Instantiate(assist, transform.position, transform.rotation);
+            //GameObject sAssist = Instantiate(assist, transform.position, transform.rotation);
             plBattery.discharge(4);
+            SocketController.RequestPlayerAssist(new AssistData(syncController.OnlineCharacters
+                .First(pair => pair.Value.Character == "Boss")
+                .Value.SocketId));
             StartCoroutine(startAssist());
         }
     }
