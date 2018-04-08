@@ -43,6 +43,14 @@ public class rocket : MonoBehaviour {
 	{
 		if (other.gameObject != Shooter)
 		{
+			
+			if (other.gameObject.tag == "wall")
+			{
+				RemoveForce();
+				Destroy(gameObject);
+				return;
+			}
+			
 			OnlineCharacter onlineCharacter = other.gameObject.GetComponent<OnlineCharacter>();
 			if (onlineCharacter != null)
 			{
