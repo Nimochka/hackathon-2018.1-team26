@@ -23,6 +23,7 @@ public class SynchronizationController : MonoBehaviour
         SocketController.OnPlayerPoisoned += ReceivePlayerPoison;
         SocketController.OnShieldRaised += ReceivePlayerShield;
         SocketController.OnTankAssist += ReceivePlayerAssist;
+        SocketController.OnTrapBoss += ReceiveBossTrap;
     }
 
 
@@ -90,5 +91,12 @@ public class SynchronizationController : MonoBehaviour
     {
         if (SocketController.SocketId == assistData.SocketId)
             PlayerCharacter.GetComponent<Boss>().Assist(OnlineCharacters.First(pair => pair.Value.Character == "Tank").Value.gameObject);
+    }
+
+
+    private void ReceiveBossTrap(TrapData trapData)
+    {
+        if (SocketController.SocketId == trapData.SocketId)
+            PlayerCharacter.GetComponent<Boss>().stunTime = 5;
     }
 }

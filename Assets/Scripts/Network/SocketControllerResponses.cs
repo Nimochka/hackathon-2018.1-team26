@@ -16,7 +16,8 @@ public partial class SocketController
     public static event Action<DieData> OnPlayerDied;
     public static event Action<PoisonData> OnPlayerPoisoned;
     public static event Action<ShieldData> OnShieldRaised;
-    public static event Action<AssistData> OnTankAssist; 
+    public static event Action<AssistData> OnTankAssist;
+    public static event Action<TrapData> OnTrapBoss; 
 
 
     public static event Action OnPlayerConnectSuccess, OnPlayerConnectFail;
@@ -107,5 +108,12 @@ public partial class SocketController
     {
         if (OnTankAssist != null)
             OnTankAssist(JsonUtility.FromJson<AssistData>(socketEvent.data.ToString()));
+    }
+
+
+    private void ResponseBossTrap(SocketIOEvent socketEvent)
+    {
+        if (OnTrapBoss != null)
+            OnTrapBoss(JsonUtility.FromJson<TrapData>(socketEvent.data.ToString()));
     }
 }

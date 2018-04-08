@@ -84,6 +84,10 @@ public abstract class Character : MonoBehaviour
         rigV *= MoveSpeed;
         rg.velocity = rigV;
 
+    }
+
+    protected virtual void Rotate()
+    {
         //Player Rotation
         Vector3 objectPos = new Vector3(0, 0, 0);
         Vector3 dir = new Vector3(0, 0, 0);
@@ -106,10 +110,8 @@ public abstract class Character : MonoBehaviour
 
 
 
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90)); ;
-
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90));
     }
-
 
     protected virtual void Update()
     {
@@ -160,7 +162,7 @@ public abstract class Character : MonoBehaviour
 
             GameObject.Destroy(mf2, 0.1f);
         }
-        
+
         GameObject mf = Instantiate(muzzleFlash, muzzle.transform.position, transform.rotation) as GameObject;
         mf.transform.parent = transform;
 
@@ -188,7 +190,7 @@ public abstract class Character : MonoBehaviour
         }
 
     }
-    
+
     protected virtual void fireBullet(GameObject bulletObject)
     {
 
@@ -214,6 +216,7 @@ public abstract class Character : MonoBehaviour
         if (!OnlinePlayer && !IsDead)
         {
             Move();
+            Rotate();
         }
     }
 
