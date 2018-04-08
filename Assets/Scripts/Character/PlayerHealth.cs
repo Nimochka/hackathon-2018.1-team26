@@ -45,6 +45,12 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
+    public void Heal(float heal)
+    {
+        currentHealth = Mathf.Min(fullHealth, currentHealth + heal);
+        healthBar.value = currentHealth;
+    }
+
     public void addDamage(float damage)
     {
 

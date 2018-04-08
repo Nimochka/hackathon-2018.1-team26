@@ -4,11 +4,17 @@ namespace Skills
 {
     public class Health : bullet
     {
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            Character character = other.gameObject.GetComponent<Character>();
-            if (character != null && (character is Tank || character is Hunter))
-                character.HealthPoints += 1;
+            if (other.gameObject != Shooter)
+            {
+                OnlineCharacter character = other.gameObject.GetComponent<OnlineCharacter>();
+                if (character != null && character.Character != "Boss")
+                {
+                    SocketController.RequstPlayerHealthChanged(new ChangeHealthData(character.SocketId, -20));
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 }

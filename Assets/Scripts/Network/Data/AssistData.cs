@@ -3,12 +3,11 @@ using UnityEngine;
 
 
 [Serializable]
-public class ShieldData
+public class AssistData
 {
-    public ShieldData(string socketId)
+    public AssistData(string socketId)
     {
         SocketId = socketId;
-
     }
 
 

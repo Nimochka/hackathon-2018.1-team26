@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 
@@ -14,19 +15,24 @@ public class Boss : Character
 
     private float regenTimer;
 
+    private bool isAssisted;
+    private Transform assistTarget;
+    private float assistTimer;
+
+
     private float nextFireRocket;
 
     private bool RocketInAir;
 
     private bool playedStepSound;
-    
+
     //Audio
     public AudioSource asourceStep; 			//The players AudioSource that sounds will be played through
     public AudioSource asourceShot; 			//The players AudioSource that sounds will be played through
     public AudioClip stepSound;
     public AudioClip standartShot;
     public AudioClip missle;
-    
+
     protected override void Start()
     {
         base.Start();
@@ -64,7 +70,7 @@ public class Boss : Character
                 asourceStep.PlayOneShot(stepSound);
             }
         }
-        
+
     }
 
     protected override void Shoot(GameObject bulletObject)
@@ -73,7 +79,7 @@ public class Boss : Character
 
         asourceShot.volume = 3;
         asourceShot.PlayOneShot(standartShot);
-        
+
 
     }
 
@@ -91,7 +97,7 @@ public class Boss : Character
 
         if (plBattery.currentEnergy < 3 || RocketInAir)
             return;
-        
+
         fireRocket();
         StartCoroutine(startFireRocket());
         plBattery.discharge(3);
@@ -101,7 +107,7 @@ public class Boss : Character
 
     void fireRocket()
     {
-        
+
         if (Time.time > nextFireRocket)
         {
             nextFireRocket = Time.time;
@@ -115,20 +121,44 @@ public class Boss : Character
             SocketController.RequestPlayerShot(new ShotData(SocketController.SocketId, muzzleRocket.transform.position,
                 muzzleRocket.transform.rotation.eulerAngles));
         }
-        
+
+    }
+
+    private void LateUpdate()
+    {
+        if (isAssisted)
+        {
+            if (Vector2.Distance(transform.position, assistTarget.position) < 190)
+            {
+                //transform.rotation = Quaternion.Lerp(transform.rotation,
+                //    Quaternion.LookRotation(assistTarget.position - transform.position), 20 * Time.deltaTime);
+                transform.up = assistTarget.position - transform.position;
+                assistTimer -= Time.deltaTime;
+                if (assistTimer <= 0)
+                    isAssisted = false;
+            }
+        }
     }
 
     protected override void OnMainSkillUse()
     {
         GameObject sDash = Instantiate(dash, transform.position, transform.rotation);
     }
-    
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (destroyMode && other.gameObject.tag == "destroyItems")
         {
             GameObject.Destroy(other.gameObject);
         }
+    }
+
+
+    public void Assist(GameObject target)
+    {
+        isAssisted = true;
+        assistTarget = target.transform;
+        assistTimer = 5;
     }
 
     IEnumerator startFireRocket()

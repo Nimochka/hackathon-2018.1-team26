@@ -26,6 +26,7 @@ public partial class SocketController : MonoBehaviour
         socket.On("response:player:die", ResponsePlayerDied);
         socket.On("response:player:poison", ResponsePlayerPoisoned);
         socket.On("response:player:shield", ResponsePlayerShield);
+        socket.On("response:player:assist", ResponsePlayerAssist);
 
         socket.On("connect:success", ResponsePlayerConnectSuccess);
         socket.On("connect:failure", ResponsePlayerConnectFail);
@@ -93,5 +94,11 @@ public partial class SocketController : MonoBehaviour
     public static void RequestPlayerShield(ShieldData shieldData)
     {
         socket.Emit("request:player:shield", new JSONObject(JsonUtility.ToJson(shieldData)));
+    }
+
+
+    public static void RequestPlayerAssist(AssistData assistData)
+    {
+        socket.Emit("request:player:assist", new JSONObject(JsonUtility.ToJson(assistData)));
     }
 }

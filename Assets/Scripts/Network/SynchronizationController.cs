@@ -1,6 +1,7 @@
-﻿﻿﻿using System.Collections.Generic;
-  using SocketIO;
-  using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SocketIO;
+using UnityEngine;
 
 
 public class SynchronizationController : MonoBehaviour
@@ -21,6 +22,7 @@ public class SynchronizationController : MonoBehaviour
         SocketController.OnPlayerDied += ReceivePlayerDied;
         SocketController.OnPlayerPoisoned += ReceivePlayerPoison;
         SocketController.OnShieldRaised += ReceivePlayerShield;
+        SocketController.OnTankAssist += ReceivePlayerAssist;
     }
 
 
@@ -50,7 +52,12 @@ public class SynchronizationController : MonoBehaviour
     private void ReceivePlayerHealthChange(ChangeHealthData healthChangeData)
     {
         if (healthChangeData.SocketId == SocketController.SocketId)
-            PlayerCharacter.GetComponent<PlayerHealth>().addDamage(healthChangeData.HealthDelta);
+        {
+            if (healthChangeData.HealthDelta > 0)
+                PlayerCharacter.GetComponent<PlayerHealth>().addDamage(healthChangeData.HealthDelta);
+            else
+                PlayerCharacter.GetComponent<PlayerHealth>().Heal(-healthChangeData.HealthDelta);
+        }
     }
 
 
@@ -78,4 +85,10 @@ public class SynchronizationController : MonoBehaviour
         OnlineCharacters[shieldData.SocketId].RaiseShield();
     }
 
+
+    private void ReceivePlayerAssist(AssistData assistData)
+    {
+        if (SocketController.SocketId == assistData.SocketId)
+            PlayerCharacter.GetComponent<Boss>().Assist(OnlineCharacters.First(pair => pair.Value.Character == "Tank").Value.gameObject);
+    }
 }
